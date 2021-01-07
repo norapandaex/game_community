@@ -1,0 +1,464 @@
+@CHARSET "UTF-8";
+
+body {
+    color: #333333;
+    font-family: "Hiragino Kaku Gothic Pro",Meiryo,"MS PGothic",Helvetica,Arial,sans-serif;
+}
+
+#header {
+    width: 100%;
+    height: 30px;
+    background-color: #616161;
+    background-image: repeating-linear-gradient(45deg,
+    #424242, #424242 3px,
+    transparent 0, transparent 6px);
+    font-family: ヒラギノ丸ゴ ProN;
+}
+
+#content {
+    width: 90%;
+    margin-top: 15px;
+    margin: 20px auto 20px auto;
+    padding-left: 3%;
+}
+
+.subheader {
+    width: 100%;
+    height: 40px;
+    background-color: #303030;
+}
+
+.subheader a {
+    font-size: 25px;
+    text-decoration: none;
+    color: #fcfeff;
+}
+
+.form {
+  text-align: center;
+  margin: 20px auto 20px auto;
+  width: 40%;
+  border: 2px solid #303030;
+}
+
+.mycommunity {
+  background-color: #e9e9e9;
+  border: 1px solid #dedede;
+  border-radius: 4px;
+  box-shadow: 0 2px 2px -1px rgba(0, 0, 0, 0.055);
+  color: #888888;
+  display: block;
+  margin: 1em 1%;
+  overflow: hidden;
+  width: 35%;
+  border: 2px solid #cacaca;
+  float: right;
+  font-family: ヒラギノ丸ゴ ProN;
+}
+
+.commuheader {
+    width: 100%;
+    height: 40px;
+    background-color: #e9e9e9;
+}
+
+.commuheader a {
+    font-size: 25px;
+    text-decoration: none;
+    color: #000000;
+}
+
+.contribution {
+    width: 60%;
+    float: left;
+}
+
+.timeline {
+    width: 60%;
+    float: left;
+}
+
+.hr1 {
+    border-width: 1px 0 0 0;
+    border-style: dotted;
+    border-color: #919191;
+}
+
+.clear {
+    clear: both;
+}
+
+a#title{
+    font-size: 20px;
+    text-decoration: none;
+    color: #fcfeff;
+}
+
+tbale a:hover {
+    background-color: #fcfcaa;
+}
+
+table {
+  border-collapse: collapse;
+  border: solid 2px #23396a;
+  width: 100%;
+  float: left;
+}
+
+table td a {
+   display: block;
+   padding: 0.6em 1em;
+}
+
+table th, table td {
+  border: dashed 1px #23396a
+}
+
+table th {
+    padding: 10px;
+    font-size: 25px;
+    font-family: ヒラギノ丸ゴ ProN;
+}
+
+table td {
+    padding: 5px;
+}
+
+#footer {
+    text-align: center;
+}
+
+.cp_navi {
+    background-color: #1b2538;
+    border: 1px solid #dedede;
+    border-radius: 4px;
+    box-shadow: 0 2px 2px -1px rgba(0, 0, 0, 0.055);
+    color: #888888;
+    display: block;
+    margin: 1em 1%;
+    overflow: hidden;
+    width: 98%;
+}
+.cp_navi ul {
+    margin: 0;
+    padding: 0;
+}
+
+.cp_navi li.right {
+    float: right;
+}
+
+.cp_navi ul li {
+    display: inline-block;
+    list-style-type: none;
+    -webkit-transition: all 0.2s;
+            transition: all 0.2s;
+}
+.cp_navi > ul > li > a > .account {
+    border-top: 4px solid #ffffff;
+    border-right: 4px solid transparent;
+    border-left: 4px solid transparent;
+    content: '';
+    display: inline-block;
+    height: 0;
+    width: 0;
+    vertical-align: middle;
+    -webkit-transition: color 0.1s linear;
+            transition: color 0.1s linear;
+}
+.cp_navi > ul > li > a {
+    color: #ffffff;
+    display: block;
+    line-height: 56px;
+    padding: 0 10px;
+    text-decoration: none;
+}
+.cp_navi > ul > li:hover {
+    background-color: rgb(218, 60, 65);
+}
+.cp_navi > ul > li:hover > a {
+    color: rgb( 255, 255, 255 );
+}
+.cp_navi > ul > li:hover > a > .account {
+    border-top-color: rgb( 255, 255, 255 );
+}
+.cp_navi > ul > li > div {
+    background-color: rgb(218, 60, 65);
+    border-top: 0;
+    border-radius: 0 0 4px 4px;
+    box-shadow: 0 2px 2px -1px rgba(0, 0, 0, 0.055);
+    display: none;
+    margin: 0;
+    opacity: 0;
+    position: absolute;
+    width: 140px;
+    visibility: hidden;
+    -webkit-transiton: opacity 0.2s;
+           transition: opacity 0.2s;
+}
+.cp_navi > ul > li:hover > div {
+    display: block;
+    opacity: 1;
+    visibility: visible;
+}
+.cp_navi > ul > li > div ul > li {
+    display: block;
+}
+.cp_navi > ul > li > div ul > li > a {
+    color: #ffffff;
+    display: block;
+    padding: 12px 24px;
+    text-decoration: none;
+}
+.cp_navi > ul > li > div ul > li:hover > a {
+    background-color: rgba( 255, 255, 255, 0.1);
+}
+
+.cp_iptxt {
+    position: relative;
+    width: 80%;
+    margin: 20px auto 20px auto;
+}
+.cp_iptxt input[type='text'] {
+    font: 15px/24px sans-serif;
+    box-sizing: border-box;
+    width: 60%;
+    padding: 0.3em;
+    transition: 0.3s;
+    letter-spacing: 1px;
+    color: #aaaaaa;
+    border: none;
+    border-bottom: 2px solid #1b2538;
+    background: transparent;
+}
+.ef input[type='text']:focus {
+    border-bottom: 2px solid #da3c41;
+    outline: none;
+}
+.cp_iptxt input[type='password'] {
+    font: 15px/24px sans-serif;
+    box-sizing: border-box;
+    width: 60%;
+    padding: 0.3em;
+    transition: 0.3s;
+    letter-spacing: 1px;
+    color: #aaaaaa;
+    border: none;
+    border-bottom: 2px solid #1b2538;
+    background: transparent;
+}
+.ef input[type='password']:focus {
+    border-bottom: 2px solid #da3c41;
+    outline: none;
+}
+
+.registration {
+    display: inline-block;
+    width: 160px;
+    padding: 1em;
+    line-height: 1.4;
+    cursor: pointer;
+    user-select: none;
+    transition: background-color 0.2s, color 0.2s, width 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275), border-radius 0.2s;
+    color: #1a1a51;
+    border: 1px solid #1a1a51;
+    border-radius: 0.2em;
+    background: transparent;
+}
+.registration:hover {
+    width: 180px;
+    color: #ffffff;
+    border-radius: 0.5em;
+    border: 1px solid #1a1a51;
+    background-color: #1a1a51;
+}
+.registration:active {
+    border-color: #1a1a51;
+    background-color: #1a1a51;
+}
+.registration:focus {
+    color: #1a1a51;
+    border: 1px solid #1a1a51;
+}
+.registration:focus:hover {
+    color: #ffffff;
+}
+
+.image {
+    position:relative;
+    top:0;
+    color:#666;
+    border:none;
+    background:none;
+    font-size:40px;/*アイコンサイズ*/
+    float: left
+}
+
+.image:hover {
+    background: #e1e3e8;
+}
+
+.con_button {
+    position: relative;
+    display: inline-block;
+    overflow: hidden;
+    width: 160px;
+    padding: 1em;
+    line-height: 1.4;
+    cursor: pointer;
+    user-select: none;
+    color: #ffffff;
+    border: 1px solid #7bbee2;
+    border-radius: 0.25rem;
+    background: #7bbee2;
+    float: right;
+}
+.con_button:after {
+    position: absolute;
+    display: block;
+    margin-top: -120%;
+    margin-left: -120%;
+    padding-top: 240%;
+    padding-left: 240%;
+    content: '';
+    transition: all 1s;
+    opacity: 0;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.3);
+}
+.con_button:hover {
+    color: #ffffff;
+    border-color: #3798ee;
+    background-color: #3798ee;
+}
+.con_button:active:after {
+    margin-top: 0;
+    margin-left: 0;
+    padding-top: 0;
+    padding-left: 0;
+    transition: 0s;
+    opacity: 1;
+}
+.con_button:focus {
+    color: #ffffff;
+    border: 1px solid #7bbee2;
+}
+
+textarea {
+  width: 100%;
+  margin: 1em 0;
+  padding: 0.5em;
+  font-size: 1em;
+  border: solid 2px #e1e3e8;
+  border-radius: 4px;
+  resize: none;
+}
+
+textarea:focus {
+  border-color: #56a9ff;
+  outline: 0;
+}
+
+.searchcommuinty{
+    float: left;
+    width: 60%;
+    padding-top: 10px;
+}
+
+.searchform {
+    float: left;
+    width: 60%;
+}
+
+#search{
+position:relative;
+max-width:300px;
+margin-bottom:20px;
+background:#eee;
+left: 25px;
+top: 15px;
+}
+#sbox{
+height:50px;
+padding:0 10px;
+position:absolute;
+left:0;
+top:0;
+border-radius:2px;
+outline:0;
+background:#eee;
+border:none;
+}
+#sbtn{
+height:50px;
+position:absolute;
+left:200px;/*アイコン左右の位置調整*/
+top:0;
+color:#666;
+border:none;
+font-size:20px;/*アイコンサイズ*/
+}
+#sbtn:hover{
+color:#7fbfff;
+}
+
+
+#sbox1{
+max-width:300px;
+height:50px;
+border-radius:2px;
+outline:0;
+margin-bottom:40px;
+background:#eee;
+border:none;
+}
+
+.commutitle {
+    background:none;
+    font-size: 35px;
+    font-family: ヒラギノ丸ゴ ProN;
+}
+
+.btn,
+a.btn,
+button.btn {
+  font-size: 0.5rem;
+  font-weight: 700;
+  line-height: 1.5;
+  position: relative;
+  display: inline-block;
+  padding: 1rem 4rem;
+  cursor: pointer;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  -webkit-transition: all 0.3s;
+  transition: all 0.3s;
+  text-align: center;
+  vertical-align: middle;
+  text-decoration: none;
+  letter-spacing: 0.1em;
+  color: #212529;
+  border-radius: 0.5rem;
+}
+
+a.btn--orange {
+  color: #fff;
+  background-color: #23396a;
+}
+
+a.btn--orange:hover {
+  color: #fff;
+  background: #23396a;
+}
+
+a.btn--circle {
+  border-radius: 50%;
+  line-height: 50px;
+  width: 50px;
+  height: 50px;
+  padding: 0;
+  left: 275px;
+  bottom: 5px;
+}
