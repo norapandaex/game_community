@@ -20,10 +20,23 @@
                     <button class="con_button">投稿</button>
                 </div>
                 <div class="mycommunity">
-                    <div class="commuheader">
-                        <a>参加しているコミュニティ</a>
-                    </div>
-                    <a>参加しているコミュニティはありません。</a>
+                    <table>
+                            <tbody>
+                                <tr>
+                                    <th>参加しているコミュニティ</th>
+                                </tr>
+                                <c:if test="${sessionScope.login_account == null}">
+                                <tr>
+                                    <td>コミュニティの管理をするには<a href="<c:url value='/login' />">こちら</a>からログインしてください。</td>
+                                </tr>
+                                </c:if>
+                                <c:if test="${sessionScope.login_account != null}">
+                                <tr>
+                                    <td><a href="">サンプル</a></td>
+                                </tr>
+                                </c:if>
+                            </tbody>
+                    </table>
                 </div>
                 <div class="timeline">
                     <hr class="hr1" />

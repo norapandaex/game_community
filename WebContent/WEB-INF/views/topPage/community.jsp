@@ -11,18 +11,26 @@
                 <button type="submit" id="sbtn"><i class="fas fa-search"></i></button>
             </form>
             <input type="hidden" name="_token" value="${_token}" />
-            <a href="<c:url value='/community/new' />" class="btn btn--orange btn--circle btn--circle-a btn--shadow">作成</a>
+            <a href="<c:url value='/community/new' />" class="btn">作成</a>
         </div>
         <div class="mycommunity">
-            <div class="commuheader">
-                <a>参加しているコミュニティ</a>
-            </div>
-            <c:if test="${sessionScope.login_account == null}">
-                コミュニティの管理をするには<a href="<c:url value='/login' />">こちら</a>ログインしてください。
-            </c:if>
-            <c:if test="${sessionScope.login_account != null}">
-                <a>参加しているコミュニティはありません。</a>
-            </c:if>
+            <table>
+                    <tbody>
+                        <tr>
+                            <th>参加しているコミュニティ</th>
+                        </tr>
+                        <c:if test="${sessionScope.login_account == null}">
+                        <tr>
+                            <td>コミュニティの管理をするには<a href="<c:url value='/login' />">こちら</a>からログインしてください。</td>
+                        </tr>
+                        </c:if>
+                        <c:if test="${sessionScope.login_account != null}">
+                        <tr>
+                            <td><a href="">サンプル</a></td>
+                        </tr>
+                        </c:if>
+                    </tbody>
+            </table>
         </div>
         <div class="searchcommuinty">
             <table>
@@ -30,9 +38,11 @@
                         <tr>
                             <th>コミュニティ一覧</th>
                         </tr>
-                        <tr>
-                            <td><a href="">サンプル</a></td>
-                        </tr>
+                        <c:forEach var="community" items="${communities}" varStatus="status">
+                            <tr>
+                                <td><a href="<c:url value='/community/show?id=${community.id}' />"><c:out value="${community.name}" /></a></td>
+                            </tr>
+                        </c:forEach>
                     </tbody>
             </table>
         </div>

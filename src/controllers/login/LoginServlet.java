@@ -87,9 +87,13 @@ public class LoginServlet extends HttpServlet {
             rd.forward(request, response);
         } else {
             request.getSession().setAttribute("login_account", a);
+            Integer pcheck = (Integer)request.getSession().getAttribute("pcheck");
 
-            request.getSession().setAttribute("flush", "ログインしました。");
-            response.sendRedirect(request.getContextPath() + "/home");
+            if(pcheck == 0){
+                response.sendRedirect(request.getContextPath() + "/community");
+            } else if(pcheck == 1){
+                response.sendRedirect(request.getContextPath() + "/home");
+            }
         }
     }
 

@@ -1,7 +1,6 @@
-package controllers.toppage;
+package controllers.community;
 
 import java.io.IOException;
-import java.util.List;
 
 import javax.persistence.EntityManager;
 import javax.servlet.RequestDispatcher;
@@ -15,16 +14,16 @@ import models.Community;
 import utils.DBUtil;
 
 /**
- * Servlet implementation class TopPageServlet
+ * Servlet implementation class CommunityShowServlet
  */
-@WebServlet("/community")
-public class TopPageServlet extends HttpServlet {
+@WebServlet("/community/show")
+public class CommunityShowServlet extends HttpServlet {
     private static final long serialVersionUID = 1L;
 
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public TopPageServlet() {
+    public CommunityShowServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -35,15 +34,13 @@ public class TopPageServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         EntityManager em = DBUtil.createEntityManager();
 
-        List<Community> communities = em.createNamedQuery("getAllCommunities", Community.class)
-                                        .getResultList();
+        Community c = em.find(Community.class, Integer.parseInt(request.getParameter("id")));
 
         em.close();
+        request.setAttribute("community", c);
+        request.setAttribute("_token", request.getSession().getId());
 
-        request.setAttribute("communities", communities);
-
-        request.getSession().setAttribute("pcheck", 0);
-        RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/views/topPage/community.jsp");
+        RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/views/community/show.jsp");
         rd.forward(request, response);
     }
 

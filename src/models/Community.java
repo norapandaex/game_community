@@ -8,10 +8,18 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Lob;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 
 
 @Table(name = "communitys")
+@NamedQueries({
+    @NamedQuery(
+            name = "getAllCommunities",
+            query = "SELECT c FROM Community AS c ORDER BY c.id DESC"
+            )
+})
 @Entity
 public class Community {
     @Id
@@ -66,7 +74,7 @@ public class Community {
         return game;
     }
 
-    public void setAdmin_flag(String game) {
+    public void setGame(String game) {
         this.game = game;
     }
 
