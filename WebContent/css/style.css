@@ -155,6 +155,29 @@ table td {
     padding: 5px;
 }
 
+.reload {
+   display: block;
+   padding: 0em 1em;
+   text-align: center;
+   background-color: white;
+   border: black;
+}
+
+.con {
+    font-size: 20px;
+}
+
+.time {
+    font-size: 12px;
+    padding: initial;
+    text-align: right;
+}
+
+#conlogin {
+    margin: 20px auto 20px auto;
+    text-align: center;
+}
+
 .mycommunity {
   background-color: #e9e9e9;
   border: 1px solid #dedede;
@@ -215,7 +238,6 @@ table td {
 
 #btn{
     display: block;
-    overflow: hidden;
     width: 35%;
     height: 70px;
     min-width: 350px;
@@ -251,6 +273,31 @@ table td {
 }
 
 a.btn2 {
+    color: #fff;
+}
+
+.btn3 {
+  font-size: 1rem;
+  position: relative;
+  display: inline-block;
+  cursor: pointer;
+  user-select: none;
+  transition: all 0.3s;
+  text-align: center;
+  vertical-align: middle;
+  text-decoration: none;
+  letter-spacing: 0.1em;
+  color: #fff;
+  border-radius: 50%;
+  line-height: 68px;
+  width: 70px;
+  height: 70px;
+  padding: 0;
+  left: 100px;
+  background-color: #23396a;
+}
+
+a.btn3 {
     color: #fff;
 }
 
@@ -321,6 +368,7 @@ a.btn2 {
     visibility: hidden;
     -webkit-transiton: opacity 0.2s;
            transition: opacity 0.2s;
+    z-index:2;
 }
 .cp_navi > ul > li:hover > div {
     display: block;
@@ -515,6 +563,7 @@ outline:0;
 background:#eee;
 border:none;
 }
+
 #sbtn{
 height:50px;
 position:absolute;
@@ -524,10 +573,10 @@ color:#666;
 border:none;
 font-size:20px;/*アイコンサイズ*/
 }
+
 #sbtn:hover{
 color:#7fbfff;
 }
-
 
 #sbox1{
 max-width:300px;
@@ -579,4 +628,199 @@ a.btn {
 
 #cinput {
     width: 100%;
+}
+
+.contents .Tittle {
+  margin-bottom: 0.5em;
+  padding-bottom: 0.25em;
+  font-size: 2em;
+  font-weight: bold;
+  line-height: 1.3;
+  border-bottom: 1px solid #dedede;
+}
+.contents p {
+  margin-bottom: 1em;
+  line-height: 1.7;
+}
+
+.popupCheck {
+  display: none;
+}
+
+label {
+  cursor: pointer;
+}
+
+.button {
+  text-align: center;
+}
+.button label {
+    font-size: 1rem;
+    position: relative;
+    display: inline-block;
+    cursor: pointer;
+    user-select: none;
+    transition: all 0.3s;
+    text-align: center;
+    vertical-align: middle;
+    text-decoration: none;
+    letter-spacing: 0.1em;
+    color: #fff;
+    border-radius: 50%;
+    line-height: 68px;
+    width: 70px;
+    height: 70px;
+    padding: 0;
+    left: 60px;
+    bottom: 70;
+    background-color: #23396a;
+}
+.button label:hover {
+  color: #FFFFFF;
+  background-color: #404b75;
+  -webkit-box-shadow: 0px 0px 12px 0px rgba(0, 0, 0, 0.3);
+          box-shadow: 0px 0px 12px 0px rgba(0, 0, 0, 0.3);
+}
+
+.popupWrap, .popupBg {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  width: 100%;
+  height: 100%;
+  margin: auto;
+  z-index: 10;
+}
+
+.popupWrap {
+  opacity: 0;
+  visibility: hidden;
+  -webkit-transition: 0.3s cubic-bezier(1, 0, 0, 1);
+  transition: 0.3s cubic-bezier(1, 0, 0, 1);
+  -webkit-transition-property: opacity;
+  transition-property: opacity;
+  will-change: opacity;
+}
+
+.popupBg {
+  cursor: pointer;
+  opacity: 0.7;
+  background-color: #000;
+  z-index: 2;
+}
+.popupBg label {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: block;
+}
+
+.popupCon {
+    position: absolute;
+    top: 5%;
+    left: 0;
+    right: 0;
+    width: 92%;
+    max-width: 500px;
+    margin: 250px auto 20px auto;
+    z-index: 3;
+}
+
+.popupInner {
+  overflow: auto;
+  -webkit-overflow-scrolling: touch;
+  position: relative;
+  height: 100%;
+  padding: 0 1.5em 1.5em;
+  cursor: default;
+  background-color: #fff;
+  border-radius: 5px;
+  -webkit-box-shadow: 0px 0px 6px 0px rgba(0, 0, 0, 0.3);
+          box-shadow: 0px 0px 6px 0px rgba(0, 0, 0, 0.3);
+}
+
+.popupButton_Close {
+  position: absolute;
+  top: 0;
+  right: 0;
+}
+.popupButton_Close label {
+  display: inline-block;
+  padding: 0.5em;
+  color: #333;
+  text-decoration: none;
+  font-size: 2em;
+}
+
+.popupCheck:not(:checked) ~ .wrapper > *:not(.popupWrap) {
+  -webkit-filter: blur(0px);
+          filter: blur(0px);
+}
+.popupCheck:not(:checked) ~ .wrapper .popupWrap {
+  opacity: 0;
+  visibility: hidden;
+}
+
+.popupCheck:checked ~ .wrapper > *:not(.popupWrap) {
+  -webkit-filter: blur(3px);
+          filter: blur(3px);
+}
+
+
+
+#popup01:checked ~ .wrapper #popup01Con {
+  opacity: 1;
+  visibility: visible;
+}
+
+.popupText .popupCover {
+  margin: 0 -1.5em 1em;
+}
+
+.popupText p {
+  margin-bottom: 1em;
+  line-height: 1.7;
+  color:#000;
+}
+
+#yes {
+    position: relative;
+    display: inline-block;
+    overflow: hidden;
+    width: 130px;
+    padding: 0.2em;
+    line-height: 1.4;
+    cursor: pointer;
+    user-select: none;
+    color: #ffffff;
+    border: 1px solid #23396a;
+    border-radius: 0.25rem;
+    background: #23396a;
+    right: 20px;
+    top: 10px;
+}
+
+#no {
+    position: relative;
+    display: inline-block;
+    overflow: hidden;
+    width: 130px;
+    padding: 0.2em;
+    line-height: 1.4;
+    cursor: pointer;
+    user-select: none;
+    color: #ffffff;
+    border: 1px solid #23396a;
+    border-radius: 0.25rem;
+    background: #23396a;
+    left: 20px;
+    top: 10px;
+}
+
+.here {
+    font-size: large;
 }

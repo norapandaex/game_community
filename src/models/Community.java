@@ -18,6 +18,10 @@ import javax.persistence.Table;
     @NamedQuery(
             name = "getAllCommunities",
             query = "SELECT c FROM Community AS c ORDER BY c.id DESC"
+            ),
+    @NamedQuery(
+            name = "getCommunityId",
+            query = "SELECT c FROM Community AS c WHERE c.id = :cid"
             )
 })
 @Entity

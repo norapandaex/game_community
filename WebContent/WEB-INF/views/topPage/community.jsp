@@ -28,6 +28,20 @@
                         <tr>
                             <td><a href="">サンプル</a></td>
                         </tr>
+                        <%--<c:choose>
+                            <c:when test="${mycommu == null}">
+                                <tr>
+                                    <td><a>参加しているコミュニティはありません。</a></td>
+                                </tr>
+                            </c:when>
+                            <c:otherwise>
+                                <c:forEach var="community" items="${mycommu}" varStatus="status">
+                                    <tr>
+                                        <td><a href="<c:url value='/community/show?id=${community.id}' />"><c:out value="${community.name}" /></a></td>
+                                    </tr>
+                                </c:forEach>
+                            </c:otherwise>
+                        </c:choose> --%>
                         </c:if>
                     </tbody>
             </table>

@@ -5,6 +5,8 @@
 		<class>models.Account</class>
 		<class>models.Follow</class>
 		<class>models.Community</class>
+		<class>models.CommunityContribution</class>
+		<class>models.CommunityMember</class>
 		<properties>
 			<property name="javax.persistence.jdbc.driver" value="com.mysql.jdbc.Driver"/>
 			<property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost/game_community?useSSL=false&amp;useUnicode=true&amp;characterEncoding=utf8"/>

@@ -5,7 +5,7 @@
         <div class="content">
 
             <c:if test="${sessionScope.login_account == null}">
-                <a href="<c:url value='/login' />">こちら</a>からログインしてください。
+                <a class="here" href="<c:url value='/login' />">こちら</a>からログインしてください。
             </c:if>
             <c:if test="${sessionScope.login_account != null}">
                 <h2><c:out value="${sessionScope.login_account.name}" />&nbsp;さんのホーム</h2>
@@ -27,13 +27,27 @@
                                 </tr>
                                 <c:if test="${sessionScope.login_account == null}">
                                 <tr>
-                                    <td>コミュニティの管理をするには<a href="<c:url value='/login' />">こちら</a>からログインしてください。</td>
+                                    <td>コミュニティの管理をするには<a class="here" href="<c:url value='/login' />">こちら</a>からログインしてください。</td>
                                 </tr>
                                 </c:if>
                                 <c:if test="${sessionScope.login_account != null}">
+                                <%--<tr>
+                            <td><a href="">サンプル</a></td>
+                        </tr> --%>
+                        <c:choose>
+                            <c:when test="${mycommu == null}">
                                 <tr>
-                                    <td><a href="">サンプル</a></td>
+                                    <td><a>参加しているコミュニティはありません。</a></td>
                                 </tr>
+                            </c:when>
+                            <c:otherwise>
+                                <c:forEach var="community" items="${mycommu}" varStatus="status">
+                                    <tr>
+                                        <td><a href="<c:url value='/community/show?id=${communitymember.community.id}' />"><c:out value="${communitymember.community.name}" /></a></td>
+                                    </tr>
+                                </c:forEach>
+                            </c:otherwise>
+                        </c:choose>
                                 </c:if>
                             </tbody>
                     </table>

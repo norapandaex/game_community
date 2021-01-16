@@ -28,8 +28,15 @@ public class LogoutServlet extends HttpServlet {
      */
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         request.getSession().removeAttribute("login_account");
+        Integer pcheck = (Integer)request.getSession().getAttribute("pcheck");
 
-        response.sendRedirect(request.getContextPath() + "/community");
+        if(pcheck == 0){
+            response.sendRedirect(request.getContextPath() + "/community");
+        } else if(pcheck == 1){
+            response.sendRedirect(request.getContextPath() + "/community");
+        } else if(pcheck == 2){
+            response.sendRedirect(request.getContextPath() + "/community/show");
+        }
     }
 
 }

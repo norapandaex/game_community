@@ -93,6 +93,8 @@ public class LoginServlet extends HttpServlet {
                 response.sendRedirect(request.getContextPath() + "/community");
             } else if(pcheck == 1){
                 response.sendRedirect(request.getContextPath() + "/home");
+            } else if(pcheck == 2){
+                response.sendRedirect(request.getContextPath() + "/community/show");
             }
         }
     }
