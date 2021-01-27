@@ -61,17 +61,86 @@
                     </table>
                 </div>
                     <div class="ccontribution">
+                        <table>
+                                    <tbody>
+                                        <tr>
+                                            <th class="reload"><a class="reload" href="<c:url value='/ccreply/new?id=${contribution.id}' />"><i class="fas fa-redo-alt"></i>更新</a></th>
+                                        </tr>
+                                        <tr>
+                                            <td class="repcon">
+                                                <a class="conname" href="<c:url value='/account/show?id=${contribution.account.id}' />"><c:out value="${contribution.account.name}" />@<c:out value="${contribution.account.code}"></c:out></a>
+                                                <pre><a class="con" href="<c:url value='/acreply/new?id=${contribution.id}' />"><c:out value="${contribution.content}" /><br /></a></pre>
+                                                <c:if test="${contribution.image != null}">
+                                                    <div class="trim">
+                                                        <a href="<c:url value='/getImage?id=${contribution.id}' />" data-lightbox="group"><img src="<c:url value='/getImage?aid=${contribution.id}' />" /></a>
+                                                    </div>
+                                                </c:if>
+                                                <a class="reply" href="<c:url value='/ccreply/new?tid=${contribution.account.id}' />"><i class="fas fa-reply"></i></a>
+                                                <c:choose>
+                                                <c:when test="${login_account != null}">
+                                                <c:set var="f" value="${0}"/>
+                                                <c:forEach var="favorite" items="${fav}" varStatus="status">
+                                                    <c:if test="${contribution.id == favorite.accountcontribution.id}">
+                                                        <c:set var="f" value="${1}"/>
+                                                    </c:if>
+                                                </c:forEach>
+                                                <c:if test="${f == 1}">
+                                                    <a class="fav" href="<c:url value='/favorite/take?rid=${accountcontribution.id}' />"><i class="fas fa-star"></i></a>
+                                                </c:if>
+                                                <c:if test="${f == 0}">
+                                                    <a class="fav" href="<c:url value='/favorite/add?rid=${accountcontribution.id}' />"><i class="far fa-star"></i></a>
+                                                </c:if>
+                                                </c:when>
+                                                </c:choose>
+                                                <a class="time"><c:out value="${contribution.created_at}"></c:out></a>
+                                             </td>
+                                        </tr>
+                                        <c:forEach var="communityreply" items="${creplies}" varStatus="status">
+                                            <tr>
+                                                <td>
+                                                <a class="conname" href="<c:url value='/account/show?id=${communityreply.account.id}' />"><c:out value="${communityreply.account.name}" />@<c:out value="${communityreply.account.code}" />︎</a>
+                                                <a class="repname" href="<c:url value='/account/show?id=${communityreply.to_account.id}' />">To&nbsp;<c:out value="${communityreply.to_account.name}" />@<c:out value="${communityreply.to_account.code}"></c:out></a>
+                                                <pre class="con"><c:out value="${communityreply.content}" /><br /></pre>
+                                                <c:if test="${communityreply.image != null}">
+                                                    <div class="trim">
+                                                        <a href="<c:url value='/getImage?id=${communityreply.id}' />" data-lightbox="group"><img src="<c:url value='/getImage?aid=${communityreply.id}' />" /></a>
+                                                    </div>
+                                                </c:if>
+                                                <a class="reply" href="<c:url value='/ccreply/new?tid=${communityreply.account.id}' />"><i class="fas fa-reply"></i></a>
+                                                <c:set var="f" value="${0}"/>
+                                                <c:forEach var="favorite" items="${fav}" varStatus="status">
+                                                    <c:if test="${communityreply.id == favorite.communityreply.id}">
+                                                        <c:set var="f" value="${1}"/>
+                                                    </c:if>
+                                                </c:forEach>
+                                                <c:if test="${f == 1}">
+                                                    <a class="fav" href="<c:url value='/favorite/take?crid=${communityreply.id}' />"><i class="fas fa-star"></i></a>
+                                                </c:if>
+                                                <c:if test="${f == 0}">
+                                                    <a class="fav" href="<c:url value='/favorite/add?crid=${communityreply.id}' />"><i class="far fa-star"></i></a>
+                                                </c:if>
+                                                <a class="time"><c:out value="${communityreply.created_at}"></c:out></a>
+                                                </td>
+                                            </tr>
+                                        </c:forEach>
+                                    </tbody>
+                            </table>
+                    </div>
+                    <div class="ctimeline">
+                        <hr class="hr1" />
+                        <div class="searchcommuinty">
                         <c:choose>
                             <c:when test="${login_account == null}">
-                                <h1 id="conlogin">投稿するには<a class="here" href="<c:url value='/login?id=${community.id}' />">ログイン</a>してこのコミュニティに参加してください。</h1>
+                                <h1 id="conlogin">コメントするには<a class="here" href="<c:url value='/login?id=${community.id}' />">ログイン</a>してこのコミュニティに参加してください。</h1>
                             </c:when>
                             <c:otherwise>
                             <c:choose>
                                 <c:when test="${community_account.community != community}">
-                                    <h1 id="conlogin">投稿するにはこのコミュニティに参加してください。</h1>
+                                    <h1 id="conlogin">コメントするにはこのコミュニティに参加してください。</h1>
                                 </c:when>
                                 <c:otherwise>
-                                    <form method="POST" enctype="multipart/form-data" action="<c:url value='/communitycontribution/create' />">
+                                    To&nbsp;<c:out value="${sessionScope.to_account.name}" />@<c:out value="${sessionScope.to_account.code}" />
+                                    <form method="POST" enctype="multipart/form-data" action="<c:url value='/ccreply/create' />">
                                         <textarea name="content" rows="2" cols="50"></textarea>
                                         <input type="hidden" name="_token" value="${_token}" />
                                         <label for="image" class="imageicon">
@@ -112,61 +181,6 @@
                             </c:choose>
                             </c:otherwise>
                         </c:choose>
-                    </div>
-                    <div class="ctimeline">
-                        <hr class="hr1" />
-                        <div class="searchcommuinty">
-                            <c:choose>
-                            <c:when test="${contributions.size() != 0}">
-                            <table>
-                                    <tbody>
-                                        <tr>
-                                            <th class="reload"><a class="reload" href="<c:url value='/community/show' />"><i class="fas fa-redo-alt"></i>更新</a></th>
-                                        </tr>
-                                        <c:forEach var="communitycontribution" items="${contributions}" varStatus="status">
-                                            <tr>
-                                                <td>
-                                                <a class="conname" href="<c:url value='/account/show?id=${communitycontribution.account.id}' />"><c:out value="${communitycontribution.account.name}" />@<c:out value="${communitycontribution.account.code}" /></a>
-                                                <pre><a class="con" href="<c:url value='/community/show?id=${communitycontribution.id}' />"><c:out value="${communitycontribution.content}" /><br /></a></pre>
-                                                <c:if test="${communitycontribution.image != null}">
-                                                    <div class="trim">
-                                                        <a href="<c:url value='/getImage?id=${communitycontribution.id}' />" data-lightbox="group"><img src="<c:url value='/getImage?cid=${communitycontribution.id}' />" /></a>
-                                                    </div>
-                                                </c:if>
-                                                <a class="reply" href="<c:url value='/ccreply/new?id=${communitycontribution.id}' />"><i class="fas fa-reply"></i></a>
-                                                <c:choose>
-                                                <c:when test="${login_account != null}">
-                                                    <c:set var="f" value="${0}"/>
-                                                <c:forEach var="favorite" items="${fav}" varStatus="status">
-                                                    <c:if test="${communitycontribution.id == favorite.communitycontribution.id}">
-                                                        <c:set var="f" value="${1}"/>
-                                                    </c:if>
-                                                </c:forEach>
-                                                <c:if test="${f == 1}">
-                                                    <a class="fav" href="<c:url value='/favorite/take?cid=${communitycontribution.id}' />"><i class="fas fa-star"></i></a>
-                                                </c:if>
-                                                <c:if test="${f == 0}">
-                                                    <a class="fav" href="<c:url value='/favorite/add?cid=${communitycontribution.id}' />"><i class="far fa-star"></i></a>
-                                                </c:if>
-                                                </c:when>
-                                                </c:choose>
-                                                <a class="time"><c:out value="${communitycontribution.created_at}"></c:out></a>
-                                                </td>
-                                            </tr>
-                                        </c:forEach>
-                                    </tbody>
-                            </table>
-                            </c:when>
-                            <c:otherwise>
-                                <table>
-                                    <tbody>
-                                        <tr>
-                                            <th class="reload"><a>投稿はまだありません。</a></th>
-                                        </tr>
-                                    </tbody>
-                                </table>
-                            </c:otherwise>
-                            </c:choose>
                         </div>
                     </div>
             </c:when>

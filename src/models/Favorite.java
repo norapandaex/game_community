@@ -94,7 +94,7 @@ public class Favorite {
         return communityreply;
     }
 
-    public void setCommunity_reply(CommunityReply communityreply) {
+    public void setCommunityreply(CommunityReply communityreply) {
         this.communityreply = communityreply;
     }
 

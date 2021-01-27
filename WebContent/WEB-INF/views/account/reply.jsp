@@ -2,7 +2,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <c:import url="../layout/app.jsp">
     <c:param name="content">
-                <div class="commutitle">
+                <div class="hometitle">
                     <i class="fab fa-stack-exchange"></i><a>投稿詳細</a>
                 </div>
                 <div class="homesearchform">
@@ -62,10 +62,10 @@
                                                     </c:if>
                                                 </c:forEach>
                                                 <c:if test="${f == 1}">
-                                                    <a class="fav" href="<c:url value='/favorite/take?rid=${accountreply.id}' />"><i class="fas fa-star"></i></a>
+                                                    <a class="fav" href="<c:url value='/favorite/take?arid=${accountreply.id}' />"><i class="fas fa-star"></i></a>
                                                 </c:if>
                                                 <c:if test="${f == 0}">
-                                                    <a class="fav" href="<c:url value='/favorite/add?rid=${accountreply.id}' />"><i class="far fa-star"></i></a>
+                                                    <a class="fav" href="<c:url value='/favorite/add?arid=${accountreply.id}' />"><i class="far fa-star"></i></a>
                                                 </c:if>
                                                 <a class="time"><c:out value="${accountreply.created_at}"></c:out></a>
                                                 </td>

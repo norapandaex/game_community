@@ -13,6 +13,7 @@ import models.Account;
 import models.AccountContribution;
 import models.AccountReply;
 import models.CommunityContribution;
+import models.CommunityReply;
 import models.Favorite;
 import utils.DBUtil;
 
@@ -35,12 +36,14 @@ public class FavoriteAddServlet extends HttpServlet {
      * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
      */
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        String ac_id = request.getParameter("id");
-        String ar_id = request.getParameter("rid");
+        String ac_id = request.getParameter("aid");
+        String ar_id = request.getParameter("arid");
         String cc_id = request.getParameter("cid");
+        String cr_id = request.getParameter("crid");
         AccountContribution ac = null;
         CommunityContribution cc = null;
         AccountReply ar = null;
+        CommunityReply cr = null;
 
         EntityManager em = DBUtil.createEntityManager();
 
@@ -57,6 +60,9 @@ public class FavoriteAddServlet extends HttpServlet {
         } else if(cc_id != null){
             cc = em.find(CommunityContribution.class, Integer.parseInt(cc_id));
             f.setCommunitycontribution(cc);
+        } else if(cr_id != null){
+            cr = em.find(CommunityReply.class, Integer.parseInt(cr_id));
+            f.setCommunityreply(cr);
         }
 
         em.getTransaction().begin();
@@ -67,8 +73,12 @@ public class FavoriteAddServlet extends HttpServlet {
         int p = (Integer)request.getSession().getAttribute("p");
         if(p == 1){
             response.sendRedirect(request.getContextPath() + "/home");
-        } else {
+        } else if(p == 2) {
             response.sendRedirect(request.getContextPath() + "/acreply/new");
+        } else if(p == 3) {
+            response.sendRedirect(request.getContextPath() + "/community/show");
+        } else if(p == 4) {
+            response.sendRedirect(request.getContextPath() + "/ccreply/new");
         }
     }
 

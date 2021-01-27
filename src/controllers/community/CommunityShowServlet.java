@@ -16,6 +16,7 @@ import models.Account;
 import models.Community;
 import models.CommunityContribution;
 import models.CommunityMember;
+import models.Favorite;
 import utils.DBUtil;
 
 /**
@@ -59,7 +60,9 @@ public class CommunityShowServlet extends HttpServlet {
         Account login_account = (Account)request.getSession().getAttribute("login_account");
         Community c = em.find(Community.class, Integer.parseInt((String)request.getSession().getAttribute("cid")));
 
-
+        List<Favorite> fav = em.createNamedQuery("checkFav", Favorite.class)
+                .setParameter("account", login_account)
+                .getResultList();
 
         try{
             contributions = em.createNamedQuery("getAllContributions", CommunityContribution.class)
@@ -89,7 +92,9 @@ public class CommunityShowServlet extends HttpServlet {
         request.setAttribute("contributions", contributions);
         request.setAttribute("contributions_count", contributions_count);
         request.setAttribute("members_count", communitymember_count);
+        request.setAttribute("fav", fav);
         request.getSession().setAttribute("pcheck", 2);
+        request.getSession().setAttribute("p", 3);
         request.getSession().setAttribute("community_account", cm);
         request.getSession().setAttribute("mycommu", mycommu);
 

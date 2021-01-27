@@ -141,7 +141,6 @@ table {
   border-collapse: collapse;
   border: solid 2px #000000b0;
   width: 100%;
-  float: left;
 }
 
 table td a {
@@ -613,9 +612,17 @@ border:none;
     background:none;
     font-size: 35px;
     font-family: ヒラギノ丸ゴ ProN;
-    float: left;
     max-width: 60%;
     clear: both;
+}
+
+.hometitle {
+    background:none;
+    font-size: 35px;
+    font-family: ヒラギノ丸ゴ ProN;
+    max-width: 60%;
+    clear: both;
+    float: left;
 }
 
 .btn {
