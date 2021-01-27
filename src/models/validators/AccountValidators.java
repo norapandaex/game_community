@@ -12,7 +12,7 @@ public class AccountValidators {
     public static List<String> validate(Account a, Boolean code_duplicate_check_flag, Boolean password_check_flag) {
         List<String> errors = new ArrayList<String>();
 
-        String code_error = _validateCode(a.getId(), code_duplicate_check_flag);
+        String code_error = _validateCode(a.getCode(), code_duplicate_check_flag);
         if(!code_error.equals("")) {
             errors.add(code_error);
         }
@@ -35,15 +35,15 @@ public class AccountValidators {
         return errors;
     }
 
-    private static String _validateCode(String id, Boolean code_duplicate_check_flag) {
-        if(id == null || id.equals("")) {
+    private static String _validateCode(String code, Boolean code_duplicate_check_flag) {
+        if(code == null || code.equals("")) {
             return "IDを入力してください。";
         }
 
         if(code_duplicate_check_flag) {
             EntityManager em = DBUtil.createEntityManager();
             long accounts_count = (long)em.createNamedQuery("checkId", Long.class)
-                                          .setParameter("id", id)
+                                          .setParameter("code", code)
                                           .getSingleResult();
             em.close();
             if(accounts_count > 0) {

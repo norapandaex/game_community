@@ -16,9 +16,8 @@
         <div id="myaccount">
             <table>
                 <tr>
-                    <td id="name">アカウント名<br />
-                    <a class="acname"><c:out value="${account.name}" />@<c:out
-                                value="${account.code}" /></a> <c:if
+                    <td id="name">アカウント名<br /> <a class="acname"><c:out
+                                value="${account.name}" />@<c:out value="${account.code}" /></a> <c:if
                             test="${sessionScope.login_account.id != account.id}">
                             <input type="checkbox" id="popup01" class="popupCheck">
                             <div class="followcon" align="center">
@@ -41,22 +40,24 @@
                                                     <div class="popupText">
                                                         <c:choose>
                                                             <c:when test="${sessionScope.login_account.id != null}">
-                                                            <c:choose>
-                                                                <c:when test="${follow_check == 0}">
-                                                                <p>このアカウントをフォローしますか？</p>
-                                                                <a href="<c:url value='/follow/add?id=${account.id}' />"
-                                                                    id="yes">はい</a>
-                                                                <label for="popup01" class="popup_Close"><a
-                                                                    id="no">いいえ</a></label>
-                                                                </c:when>
-                                                                <c:otherwise>
-                                                                <p>このアカウントのフォローを外しますか？</p>
-                                                                <a href="<c:url value='/follow/take?id=${account.id}' />"
-                                                                    id="yes">はい</a>
-                                                                <label for="popup01" class="popup_Close"><a
-                                                                    id="no">いいえ</a></label>
-                                                                </c:otherwise>
-                                                            </c:choose>
+                                                                <c:choose>
+                                                                    <c:when test="${follow_check == 0}">
+                                                                        <p>このアカウントをフォローしますか？</p>
+                                                                        <a
+                                                                            href="<c:url value='/follow/add?id=${account.id}' />"
+                                                                            id="yes">はい</a>
+                                                                        <label for="popup01" class="popup_Close"><a
+                                                                            id="no">いいえ</a></label>
+                                                                    </c:when>
+                                                                    <c:otherwise>
+                                                                        <p>このアカウントのフォローを外しますか？</p>
+                                                                        <a
+                                                                            href="<c:url value='/follow/take?id=${account.id}' />"
+                                                                            id="yes">はい</a>
+                                                                        <label for="popup01" class="popup_Close"><a
+                                                                            id="no">いいえ</a></label>
+                                                                    </c:otherwise>
+                                                                </c:choose>
                                                             </c:when>
                                                             <c:otherwise>
                                                                 <p>フォローするにはログインしてください。</p>
@@ -77,12 +78,12 @@
                             </div>
                         </c:if>
                     </td>
-                    <td id="follow">フォロー<br />
-                    <input type="checkbox" id="popup" class="popupCheck">
-                    <a href="<c:url value='/follow/show?id=${account.id}' />" class="acname"><c:out value="${followsC}" /></a>
+                    <td id="follow">フォロー<br /> <input type="checkbox" id="popup"
+                        class="popupCheck"> <a href="<c:url value='/follow/show?id=${account.id}' />" class="acname"><c:out
+                                value="${followsC}" /></a>
                     </td>
-                    <td id="follower">フォロワー<br />
-                    <a href="<c:url value='/follower/show?id=${account.id}' />" class="acname"><c:out value="${followersC}" /></a></td>
+                    <td id="follower">フォロワー<br /> <a href="<c:url value='/follower/show?id=${account.id}' />" class="acname"><c:out
+                                value="${followersC}" /></a></td>
                     <td id="fav">お気に入り<br />
                     <a href="<c:url value='/favorite/show?id=${account.id}' />" class="acname"><c:out value="${favoritesC}" /></a></td>
                 </tr>
@@ -134,6 +135,38 @@
                     </c:if>
                 </tbody>
             </table>
+        </div>
+        <div class="flist">
+            <c:choose>
+                <c:when test="${followers != null}">
+                    <table>
+                        <tbody>
+                            <tr>
+                                <th><a id=""><i class="fas fa-male"></i>&nbsp;フォロワーリスト</a></th>
+                            </tr>
+                            <c:forEach var="follow" items="${followers}" varStatus="status">
+                                <tr>
+                                    <td><a
+                                        href="<c:url value='/account/show?id=${follow.follow.id}' />"><c:out
+                                                value="${follow.follow.name}" />@<c:out
+                                                value="${follow.follow.code}" /></a> <pre id="procontent">
+                            <c:out value="${follow.follow.profile}" />
+                        </pre></td>
+                                </tr>
+                            </c:forEach>
+                        </tbody>
+                    </table>
+                </c:when>
+                <c:otherwise>
+                    <table>
+                        <tbody>
+                            <tr>
+                                <th class="reload"><a>誰かフォローしてコミュニティを広げよう！</a></th>
+                            </tr>
+                        </tbody>
+                    </table>
+                </c:otherwise>
+            </c:choose>
         </div>
     </c:param>
 </c:import>

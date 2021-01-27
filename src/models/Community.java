@@ -13,7 +13,7 @@ import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 
 
-@Table(name = "communitys")
+@Table(name = "communities")
 @NamedQueries({
     @NamedQuery(
             name = "getAllCommunities",
@@ -22,6 +22,14 @@ import javax.persistence.Table;
     @NamedQuery(
             name = "getCommunityId",
             query = "SELECT c FROM Community AS c WHERE c.id = :cid"
+            ),
+    @NamedQuery(
+            name = "getCommunityName",
+            query = "SELECT c.name FROM Community AS c WHERE c.id = :cid"
+            ),
+    @NamedQuery(
+            name = "getSearch",
+            query = "SELECT c FROM Community AS c WHERE (c.name LIKE :skeyword OR c.game LIKE :skeyword) ORDER BY c.id DESC"
             )
 })
 @Entity

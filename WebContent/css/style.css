@@ -7,7 +7,6 @@ body {
 
 a:link,
 a:visited,
-a:hover,
 a:active {
   color: black;
   text-decoration: none;
@@ -66,6 +65,7 @@ a:active {
   text-align: center;
   margin: 20px auto 20px auto;
   width: 40%;
+  max-width: 30%;
   border: 2px solid #303030;
   font-family: ヒラギノ丸ゴ ProN;
 }
@@ -92,17 +92,21 @@ a:active {
     width: 60%;
     float: left;
     min-width: 600px;
+    max-width: 50%;
+    margin: 20px auto 20px auto;
 }
 
 .ccontribution {
     width: 60%;
     min-width: 600px;
+    max-width: 50%;
     margin: 20px auto 20px auto;
 }
 
 .ctimeline {
     width: 60%;
     min-width: 600px;
+    max-width: 50%;
     margin: 60px auto 20px auto;
 }
 
@@ -114,6 +118,13 @@ a:active {
 
 .clear {
     clear: both;
+}
+
+.homesearchform {
+    float: right;
+    width: 270px;
+    max-width: 30%;
+    display: block;
 }
 
 a#title{
@@ -161,10 +172,12 @@ table td {
    text-align: center;
    background-color: white;
    border: black;
+   color: black;
 }
 
 .con {
     font-size: 20px;
+    padding: 0.6em 1em;
 }
 
 .time {
@@ -228,6 +241,7 @@ table td {
 
 #commumember {
     font-size: 17px;
+    color: white;
 }
 
 .commusub {
@@ -270,6 +284,13 @@ table td {
   padding: 0;
   left: 275px;
   background-color: #23396a;
+}
+
+.btn2:hover {
+    color: #FFFFFF;
+    background-color: #404b75;
+    -webkit-box-shadow: 0px 0px 12px 0px rgba(0, 0, 0, 0.3);
+            box-shadow: 0px 0px 12px 0px rgba(0, 0, 0, 0.3);
 }
 
 a.btn2 {
@@ -592,6 +613,9 @@ border:none;
     background:none;
     font-size: 35px;
     font-family: ヒラギノ丸ゴ ProN;
+    float: left;
+    max-width: 60%;
+    clear: both;
 }
 
 .btn {
@@ -622,8 +646,10 @@ a.btn {
 }
 
 .btn:hover {
-  color: #fff;
-  background: #00567b;
+    color: #FFFFFF;
+    background-color: #404b75;
+    -webkit-box-shadow: 0px 0px 12px 0px rgba(0, 0, 0, 0.3);
+            box-shadow: 0px 0px 12px 0px rgba(0, 0, 0, 0.3);
 }
 
 #cinput {
@@ -823,4 +849,260 @@ label {
 
 .here {
     font-size: large;
+}
+
+#image {
+    display: none;
+}
+
+.imageicon {
+    font-size: 35;
+}
+
+#output {
+    max-width: 60%;
+}
+
+.homeccontribution {
+    float: left;
+    width: 60%;
+    clear: both;
+}
+
+i.fas.fa-male {
+    font-size: 20px;
+}
+
+.button.small {
+    display: block;
+    width: 35%;
+    height: 70px;
+    min-width: 350px;
+    float: left;
+}
+
+.mypage {
+    background: none;
+    font-size: 35px;
+    font-family: ヒラギノ丸ゴ ProN;
+    max-width: 60%;
+    clear: both;
+}
+
+#myaccount {
+    float: left;
+    width: 60%;
+    margin: 1em 1%;
+}
+
+#name {
+    width: 55%;
+    vertical-align: baseline;
+}
+
+#follow {
+    width: 15%;
+    vertical-align: baseline;
+}
+
+#follower {
+    width: 15%;
+    vertical-align: baseline;
+}
+
+#fav {
+    width: 15%;
+    vertical-align: baseline;
+}
+
+#profile {
+    height: 100px;
+    vertical-align: baseline;
+}
+
+#btn4 {
+    font-size: 1rem;
+    position: relative;
+    cursor: pointer;
+    user-select: none;
+    transition: all 0.3s;
+    text-align: center;
+    vertical-align: middle;
+    text-decoration: none;
+    letter-spacing: 0.1em;
+    color: #fff;
+    border-radius: 50%;
+    line-height: 68px;
+    width: 70px;
+    height: 70px;
+    padding: 0;
+    bottom: 10px;
+    float: right;
+    background-color: #23396a;
+}
+
+#btn4:hover {
+    color: #FFFFFF;
+    background-color: #404b75;
+    -webkit-box-shadow: 0px 0px 12px 0px rgba(0, 0, 0, 0.3);
+            box-shadow: 0px 0px 12px 0px rgba(0, 0, 0, 0.3);
+}
+
+#procontent {
+    float: left;
+    width: 80%;
+    font-size: 15px;
+}
+
+.conname {
+    width: 40%;
+    vertical-align: baseline;
+    padding: 0;
+}
+
+.acname {
+    float: left;
+}
+
+.followbutton {
+    display: inline-block;
+    width: 100px;
+    padding: 0.5em;
+    line-height: 1.4em;
+    cursor: pointer;
+    user-select: none;
+    transition: box-shadow 0.2s, transform 0.2s;
+    color: #FFFFFF;
+    border-width: 0;
+    border-style: solid;
+    border-radius: 12% / 50%;
+    background: #23396a;
+    box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.1);
+}
+.followbutton:hover {
+  color: #FFFFFF;
+  background-color: #404b75;
+  -webkit-box-shadow: 0px 0px 12px 0px rgba(0, 0, 0, 0.3);
+          box-shadow: 0px 0px 12px 0px rgba(0, 0, 0, 0.3);
+}
+
+.followcon {
+    float: right;
+}
+
+.popupCheck:not(:checked) ~ .followcon > *:not(.popupWrap) {
+  -webkit-filter: blur(0px);
+          filter: blur(0px);
+}
+.popupCheck:not(:checked) ~ .followcon .popupWrap {
+  opacity: 0;
+  visibility: hidden;
+}
+
+.popupCheck:checked ~ .followcon > *:not(.popupWrap) {
+  -webkit-filter: blur(3px);
+          filter: blur(3px);
+}
+
+#popup01:checked ~ .followcon #popup01Con {
+  opacity: 1;
+  visibility: visible;
+}
+
+.flist {
+    float: left;
+}
+
+.popupCheck:not(:checked) ~ .flist > *:not(.popupWrap) {
+  -webkit-filter: blur(0px);
+          filter: blur(0px);
+}
+.popupCheck:not(:checked) ~ .flist .popupWrap {
+  opacity: 0;
+  visibility: hidden;
+}
+
+.popupCheck:checked ~ .flist > *:not(.popupWrap) {
+  -webkit-filter: blur(3px);
+          filter: blur(3px);
+}
+
+#popup01:checked ~ .flist #popupCon {
+  opacity: 1;
+  visibility: visible;
+}
+
+#popup:checked ~ .flist #popupCon {
+  opacity: 1;
+  visibility: visible;
+}
+
+#close {
+    position: relative;
+    display: inline-block;
+    overflow: hidden;
+    width: 130px;
+    padding: 0.2em;
+    line-height: 1.4;
+    cursor: pointer;
+    user-select: none;
+    color: #ffffff;
+    border: 1px solid #23396a;
+    border-radius: 0.25rem;
+    background: #23396a;
+}
+
+.trim {
+    overflow: hidden;
+    width: 300px;
+    height: 150px;
+    position: relative;
+    margin: auto;
+}
+
+.trim img {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+}
+
+.flist {
+    float: left;
+    width: 60%;
+    padding-top: 10px;
+    min-width: 600px;
+    margin: 1em 1%;
+}
+
+#cmlist {
+    width: 30%;
+    min-width: 600px;
+    margin: auto;
+}
+
+.reply {
+    float: left;
+    padding: 0px 0px 0px 10px;
+    font-size: 20px;
+}
+
+.fav {
+    float: left;
+    padding: 0px 0px 0px 30px;
+    font-size: 20px;
+}
+
+.repcon a {
+    font-size: 20px;
+    font-weight: 900;
+}
+
+.repname {
+    width: 40%;
+    vertical-align: baseline;
+    padding: 4px;
+    font-size: 13px;
 }

@@ -16,8 +16,28 @@ import javax.persistence.Table;
 @Table(name = "follows")
 @NamedQueries({
     @NamedQuery(
-            name = "getFollowCount",
-            query = "SELECT COUNT(f) FROM Follow AS f WHERE f.account = :account"
+            name = "getMyFollows",
+            query = "SELECT f FROM Follow AS f WHERE f.follow = :follow AND f.follower <> f.follow"
+            ),
+    @NamedQuery(
+            name = "getMyFollowers",
+            query = "SELECT f FROM Follow AS f WHERE f.follower = :follower AND f.follower <> f.follow"
+            ),
+    @NamedQuery(
+            name = "getFollowsCount",
+            query = "SELECT COUNT(f) FROM Follow AS f WHERE f.follow = :follow AND f.follower <> f.follow"
+            ),
+    @NamedQuery(
+            name = "getFollowersCount",
+            query = "SELECT COUNT(f) FROM Follow AS f WHERE f.follower = :follower AND f.follower <> f.follow"
+            ),
+    @NamedQuery(
+            name = "getFollowCheck",
+            query = "SELECT COUNT(f) FROM Follow AS f WHERE f.follow = :follow AND f.follower = :follower AND f.follower <> f.follow"
+            ),
+    @NamedQuery(
+            name = "getAllFollows",
+            query = "SELECT f FROM Follow AS f WHERE f.follow = :follow"
             )
 })
 @Entity
@@ -28,8 +48,8 @@ public class Follow {
     private Integer id;
 
     @ManyToOne
-    @JoinColumn(name = "account_id", nullable = false)
-    private Account account;
+    @JoinColumn(name = "follower", nullable = false)
+    private Account follower;
 
     @ManyToOne
     @JoinColumn(name = "follow", nullable = false)
@@ -46,12 +66,12 @@ public class Follow {
         this.id = id;
     }
 
-    public Account getAccount() {
-        return account;
+    public Account getFollower() {
+        return follower;
     }
 
-    public void setAccount(Account account) {
-        this.account = account;
+    public void setFollower(Account follower) {
+        this.follower = follower;
     }
 
     public Account getFollow() {
@@ -66,7 +86,7 @@ public class Follow {
         return followed_at;
     }
 
-    public void setfollowed_at(Timestamp followed_at) {
+    public void setFollowed_at(Timestamp followed_at) {
         this.followed_at = followed_at;
     }
 }

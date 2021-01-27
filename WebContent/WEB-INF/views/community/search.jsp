@@ -49,13 +49,23 @@
                         <tr>
                             <th>コミュニティ一覧</th>
                         </tr>
-                        <c:forEach var="community" items="${communities}" varStatus="status">
+                        <c:choose>
+                            <c:when test="${searches.size() == 0}">
                             <tr>
-                                <td><a href="<c:url value='/community/show?id=${community.id}' />"><c:out value="${community.name}" /></a></td>
-                            </tr>
-                        </c:forEach>
+                                    <td><a>お探しのコミュニティは見つかりませんでした。</a></td>
+                                </tr>
+                            </c:when>
+                            <c:otherwise>
+                            <c:forEach var="community" items="${searches}" varStatus="status">
+                                <tr>
+                                    <td><a href="<c:url value='/community/show?id=${community.id}' />"><c:out value="${community.name}" /></a></td>
+                                </tr>
+                            </c:forEach>
+                            </c:otherwise>
+                        </c:choose>
                     </tbody>
             </table>
+
         </div>
     </c:param>
 </c:import>

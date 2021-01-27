@@ -15,12 +15,20 @@ import javax.persistence.Table;
 @Table(name = "communitymembers")
 @NamedQueries({
     @NamedQuery(
-            name = "checkLoginId",
-            query = "SELECT cm FROM CommunityMember AS cm WHERE cm.account = :account"
+            name = "checkAdd",
+            query = "SELECT cm FROM CommunityMember AS cm WHERE cm.account = :account AND cm.community = :c"
             ),
     @NamedQuery(
             name = "getMyCommunity",
             query = "SELECT cm FROM CommunityMember AS cm WHERE cm.account = :account ORDER BY cm.id DESC"
+            ),
+    @NamedQuery(
+            name = "getMemberCount",
+            query = "SELECT COUNT(cm) FROM CommunityMember AS cm WHERE cm.community = :c"
+            ),
+    @NamedQuery(
+            name = "getAllMember",
+            query = "SELECT cm FROM CommunityMember AS cm WHERE cm.community = :c"
             )
 })
 @Entity

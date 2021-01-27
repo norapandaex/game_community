@@ -1,4 +1,4 @@
-package controllers.communityMember;
+package controllers.member;
 
 import java.io.IOException;
 

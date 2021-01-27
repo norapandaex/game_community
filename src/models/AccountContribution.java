@@ -16,19 +16,23 @@ import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 
 
-@Table(name = "communitycontributions")
+@Table(name = "accountcontributions")
 @NamedQueries({
     @NamedQuery(
-            name = "getAllContributions",
-            query = "SELECT cc FROM CommunityContribution AS cc WHERE cc.community = :c ORDER BY cc.id DESC"
+            name = "getAllAccountContributions",
+            query = "SELECT ac FROM AccountContribution AS ac ORDER BY ac.id DESC"
             ),
     @NamedQuery(
-            name = "getContributionsCount",
-            query = "SELECT COUNT(cc) FROM CommunityContribution AS cc WHERE cc.community = :c"
+            name = "getAccountContributionsCount",
+            query = "SELECT COUNT(ac) FROM AccountContribution AS ac WHERE ac.account = :a"
+            ),
+    @NamedQuery(
+            name = "getAccountContributionSearch",
+            query = "SELECT ac FROM AccountContribution AS ac WHERE ac.content LIKE :skeyword ORDER BY ac.id DESC"
             )
 })
 @Entity
-public class CommunityContribution {
+public class AccountContribution {
     @Id
     @Column(name = "id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -37,10 +41,6 @@ public class CommunityContribution {
     @ManyToOne
     @JoinColumn(name = "account_id", nullable = false)
     private Account account;
-
-    @ManyToOne
-    @JoinColumn(name = "community_id", nullable = false)
-    private Community community;
 
     @Lob
     @Column(name = "content", nullable = false)
@@ -69,14 +69,6 @@ public class CommunityContribution {
 
     public void setAccount(Account account) {
         this.account = account;
-    }
-
-    public Community getCommunity() {
-        return community;
-    }
-
-    public void setCommunity(Community community) {
-        this.community = community;
     }
 
     public String getContent() {

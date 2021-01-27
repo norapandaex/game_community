@@ -14,7 +14,7 @@
             <form method="POST" action="<c:url value='/login' />">
                 <div class="cp_iptxt">
                     <label class="ef">
-                        <input type="text" name="id" placeholder="ID" value="${id}"/><br /><br />
+                        <input type="text" name="id" placeholder="ID"/><br /><br />
                         <input type="password" name="password" placeholder="パスワード" /><br /><br />
                     </label>
                 </div>

@@ -30,12 +30,10 @@ public class LogoutServlet extends HttpServlet {
         request.getSession().removeAttribute("login_account");
         Integer pcheck = (Integer)request.getSession().getAttribute("pcheck");
 
-        if(pcheck == 0){
-            response.sendRedirect(request.getContextPath() + "/community");
-        } else if(pcheck == 1){
-            response.sendRedirect(request.getContextPath() + "/community");
-        } else if(pcheck == 2){
+        if(pcheck == 2){
             response.sendRedirect(request.getContextPath() + "/community/show");
+        } else {
+            response.sendRedirect(request.getContextPath() + "/community");
         }
     }
 

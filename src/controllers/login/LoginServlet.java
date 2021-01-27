@@ -66,7 +66,7 @@ public class LoginServlet extends HttpServlet {
 
             try{
                 a = em.createNamedQuery("checkLoginIdAndPassword", Account.class)
-                      .setParameter("id", id)
+                      .setParameter("code", id)
                       .setParameter("pass", password)
                       .getSingleResult();
             } catch(NoResultException ex)  {}
@@ -95,6 +95,8 @@ public class LoginServlet extends HttpServlet {
                 response.sendRedirect(request.getContextPath() + "/home");
             } else if(pcheck == 2){
                 response.sendRedirect(request.getContextPath() + "/community/show");
+            } else if(pcheck == 3){
+                response.sendRedirect(request.getContextPath() + "/account/show");
             }
         }
     }

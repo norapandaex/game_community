@@ -7,6 +7,9 @@
         <link rel="stylesheet" href="<c:url value='/css/reset.css' />">
         <link rel="stylesheet" href="<c:url value='/css/style.css' />">
         <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.0/css/all.css" integrity="sha384-lKuwvrZot6UHsBSfcMvOkWwlCMgc0TaWr+30HWe3a4ltaBwTZhyTEggF5tJv8tbt" crossorigin="anonymous">
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.7.1/css/lightbox.css" rel="stylesheet">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.7.1/js/lightbox.min.js" type="text/javascript"></script>
     </head>
     <body>
         <div id="wrapper">
@@ -21,7 +24,7 @@
                     <li class="right"><a href="">アカウント設定<span class="account"></span></a>
                         <div>
                             <ul>
-                            <li><a href="/account/show">管理</a></li>
+                            <li><a href="<c:url value='/account/show?id=${sessionScope.login_account.id}' />">管理</a></li>
                             <li><a href="<c:url value='/logout' />">ログアウト</a></li>
                             </ul>
                         </div>

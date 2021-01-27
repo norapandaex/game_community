@@ -16,26 +16,34 @@ import javax.persistence.Table;
 @NamedQueries({
     @NamedQuery(
             name = "getAllAccounts",
-            query = "SELECT a FROM Account AS a ORDER BY a.number DESC"
+            query = "SELECT a FROM Account AS a ORDER BY a.id DESC"
             ),
     @NamedQuery(
             name = "checkId",
-            query = "SELECT COUNT(a) FROM Account AS a WHERE a.id = :id"
+            query = "SELECT COUNT(a) FROM Account AS a WHERE a.code = :code"
             ),
     @NamedQuery(
             name = "checkLoginIdAndPassword",
+            query = "SELECT a FROM Account AS a WHERE a.delete_flag = 0 AND a.code = :code AND a.password = :pass"
+            ),
+    @NamedQuery(
+            name = "getMyAccount",
             query = "SELECT a FROM Account AS a WHERE a.delete_flag = 0 AND a.id = :id AND a.password = :pass"
+            ),
+    @NamedQuery(
+            name = "getAccountSearch",
+            query = "SELECT a FROM Account AS a WHERE (a.name LIKE :skeyword OR a.code LIKE :skeyword) ORDER BY a.id DESC"
             )
 })
 @Entity
 public class Account {
     @Id
-    @Column(name = "number")
+    @Column(name = "id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer number;
+    private Integer id;
 
-    @Column(name = "id", nullable = false, unique = true)
-    private String id;
+    @Column(name = "code", nullable = false, unique = true)
+    private String code;
 
     @Column(name = "name", nullable = false)
     private String name;
@@ -56,20 +64,20 @@ public class Account {
     @Column(name = "delete_flag", nullable = false)
     private Integer delete_flag;
 
-    public Integer getNum() {
-        return number;
-    }
-
-    public void setNum(Integer number) {
-        this.number = number;
-    }
-
-    public String getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(Integer id) {
         this.id = id;
+    }
+
+    public String getCode() {
+        return code;
+    }
+
+    public void setCode(String code) {
+        this.code = code;
     }
 
     public String getName() {
@@ -92,7 +100,7 @@ public class Account {
         return profile;
     }
 
-    public void setPofile(String profile) {
+    public void setProfile(String profile) {
         this.profile = profile;
     }
 

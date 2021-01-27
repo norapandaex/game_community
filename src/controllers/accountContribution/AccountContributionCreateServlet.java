@@ -1,4 +1,4 @@
-package controllers.communityContribution;
+package controllers.accountContribution;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -17,23 +17,22 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.Part;
 
 import models.Account;
-import models.Community;
-import models.CommunityContribution;
+import models.AccountContribution;
 import utils.DBUtil;
 import utils.ImageTranslation;
 
 /**
- * Servlet implementation class CommunityContributionCreateServlet
+ * Servlet implementation class AccountContributionCreateServlet
  */
-@WebServlet("/communitycontribution/create")
+@WebServlet("/accountcontribution/create")
 @MultipartConfig(maxFileSize = 1048576)
-public class CommunityContributionCreateServlet extends HttpServlet {
+public class AccountContributionCreateServlet extends HttpServlet {
     private static final long serialVersionUID = 1L;
 
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public CommunityContributionCreateServlet() {
+    public AccountContributionCreateServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -42,22 +41,20 @@ public class CommunityContributionCreateServlet extends HttpServlet {
      * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
      */
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        String _token = ImageTranslation.getParamVal(request.getPart("_token"));
-        if(_token != null && _token.equals(request.getSession().getId())) {
+        //String _token = ImageTranslation.getParamVal(request.getPart("_token"));
+        //if(_token != null && _token.equals(request.getSession().getId())) {
             EntityManager em = DBUtil.createEntityManager();
 
             String content = ImageTranslation.getParamVal(request.getPart("content"));
-            Community c = em.find(Community.class, Integer.parseInt((String)request.getSession().getAttribute("cid")));
 
-            CommunityContribution cc = new CommunityContribution();
+            AccountContribution ac = new AccountContribution();
 
-            cc.setAccount((Account)request.getSession().getAttribute("login_account"));
-            cc.setCommunity(c);
-            cc.setContent(request.getParameter("content"));
+            ac.setAccount((Account)request.getSession().getAttribute("login_account"));
+            ac.setContent(request.getParameter("content"));
 
             Timestamp currentTime = new Timestamp(System.currentTimeMillis());
-            cc.setCreated_at(currentTime);
-            cc.setDelete_flag(0);
+            ac.setCreated_at(currentTime);
+            ac.setDelete_flag(0);
 
             Part part = request.getPart("image");
             if(part != null){
@@ -72,7 +69,7 @@ public class CommunityContributionCreateServlet extends HttpServlet {
                         blobimage = new javax.sql.rowset.serial.SerialBlob(byteData);
                     } catch(SQLException e) {}
 
-                    cc.setImage(blobimage);
+                    ac.setImage(blobimage);
                 }
             }
 
@@ -80,19 +77,19 @@ public class CommunityContributionCreateServlet extends HttpServlet {
                 em.close();
 
                 request.setAttribute("_token", request.getSession().getId());
-                request.setAttribute("ccontribution", cc);
+                request.setAttribute("acontribution", ac);
 
-                RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/views/community/show.jsp");
+                RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/views/account/home.jsp");
                 rd.forward(request, response);
             } else {
                 em.getTransaction().begin();
-                em.persist(cc);
+                em.persist(ac);
                 em.getTransaction().commit();
                 em.close();
 
-                response.sendRedirect(request.getContextPath() + "/community/show");
+                response.sendRedirect(request.getContextPath() + "/home");
             }
         }
-    }
 
-}
+    }
+//}

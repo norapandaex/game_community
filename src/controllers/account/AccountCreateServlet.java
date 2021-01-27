@@ -14,6 +14,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import models.Account;
+import models.Follow;
 import models.validators.AccountValidators;
 import utils.DBUtil;
 import utils.EncryptUtil;
@@ -48,7 +49,7 @@ public class AccountCreateServlet extends HttpServlet {
             String password = request.getParameter("password");
             String vpassword = request.getParameter("vpassword");
 
-            a.setId(id);
+            a.setCode(id);
             a.setName(request.getParameter("name"));
             if(password.equals(vpassword)){
             a.setPassword(
@@ -81,10 +82,20 @@ public class AccountCreateServlet extends HttpServlet {
 
                 try{
                     a = em.createNamedQuery("checkLoginIdAndPassword", Account.class)
-                          .setParameter("id", id)
+                          .setParameter("code", id)
                           .setParameter("pass", password)
                           .getSingleResult();
                 } catch(NoResultException ex)  {}
+
+                Follow f = new Follow();
+
+                f.setFollow(a);
+                f.setFollower(a);
+                f.setFollowed_at(currentTime);
+
+                em.getTransaction().begin();
+                em.persist(f);
+                em.getTransaction().commit();
 
                 em.close();
 

@@ -15,20 +15,19 @@ import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 
-
-@Table(name = "communitycontributions")
+@Table(name = "communityreplies")
 @NamedQueries({
     @NamedQuery(
-            name = "getAllContributions",
-            query = "SELECT cc FROM CommunityContribution AS cc WHERE cc.community = :c ORDER BY cc.id DESC"
+            name = "getAllCommunityReply",
+            query = "SELECT cr FROM CommunityReply AS cr WHERE cr.communitycontribution = :cc ORDER BY cr.id"
             ),
     @NamedQuery(
-            name = "getContributionsCount",
-            query = "SELECT COUNT(cc) FROM CommunityContribution AS cc WHERE cc.community = :c"
+            name = "getCommunityReplyCount",
+            query = "SELECT COUNT(cr) FROM CommunityReply AS cr WHERE cr.communitycontribution = :cc"
             )
 })
 @Entity
-public class CommunityContribution {
+public class CommunityReply {
     @Id
     @Column(name = "id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -39,8 +38,12 @@ public class CommunityContribution {
     private Account account;
 
     @ManyToOne
-    @JoinColumn(name = "community_id", nullable = false)
-    private Community community;
+    @JoinColumn(name = "to_account_id", nullable = false)
+    private Account to_account;
+
+    @ManyToOne
+    @JoinColumn(name = "cc_id", nullable = false)
+    private CommunityContribution communitycontribution;
 
     @Lob
     @Column(name = "content", nullable = false)
@@ -71,12 +74,20 @@ public class CommunityContribution {
         this.account = account;
     }
 
-    public Community getCommunity() {
-        return community;
+    public Account getTo_account() {
+        return to_account;
     }
 
-    public void setCommunity(Community community) {
-        this.community = community;
+    public void setTo_account(Account to_account) {
+        this.to_account = to_account;
+    }
+
+    public CommunityContribution getCommunitycontribution() {
+        return communitycontribution;
+    }
+
+    public void setCommunitycontribution(CommunityContribution communitycontribution) {
+        this.communitycontribution = communitycontribution;
     }
 
     public String getContent() {
@@ -110,4 +121,5 @@ public class CommunityContribution {
     public void setDelete_flag(Integer delete_flag) {
         this.delete_flag = delete_flag;
     }
+
 }
