@@ -42,9 +42,13 @@ public class AccountShowServlet extends HttpServlet {
             request.getSession().setAttribute("account", a);
             request.getSession().removeAttribute("aid");
         } else {
-            a = em.find(Account.class, Integer.parseInt(request.getParameter("id")));
+            if(request.getParameter("id") != null){
+                a = em.find(Account.class, Integer.parseInt(request.getParameter("id")));
+                request.getSession().setAttribute("aid", request.getParameter("id"));
+            } else {
+                a = (Account)request.getSession().getAttribute("aid");
+            }
             request.getSession().setAttribute("account", a);
-            request.getSession().setAttribute("aid", request.getParameter("id"));
         }
 
         long follow_check = (long)em.createNamedQuery("getFollowCheck", Long.class)

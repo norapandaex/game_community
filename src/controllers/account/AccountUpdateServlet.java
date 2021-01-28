@@ -46,7 +46,7 @@ public class AccountUpdateServlet extends HttpServlet {
             em.getTransaction().commit();
             em.close();
 
-            request.setAttribute("id", a);
+            request.getSession().setAttribute("aid", a);
 
             response.sendRedirect(request.getContextPath() + "/account/show");
         }

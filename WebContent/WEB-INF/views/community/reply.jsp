@@ -72,7 +72,7 @@
                                                 <pre><a class="con" href="<c:url value='/acreply/new?id=${contribution.id}' />"><c:out value="${contribution.content}" /><br /></a></pre>
                                                 <c:if test="${contribution.image != null}">
                                                     <div class="trim">
-                                                        <a href="<c:url value='/getImage?id=${contribution.id}' />" data-lightbox="group"><img src="<c:url value='/getImage?aid=${contribution.id}' />" /></a>
+                                                        <a href="<c:url value='/getImage?cid=${contribution.id}' />" data-lightbox="group"><img src="<c:url value='/getImage?cid=${contribution.id}' />" /></a>
                                                     </div>
                                                 </c:if>
                                                 <a class="reply" href="<c:url value='/ccreply/new?tid=${contribution.account.id}' />"><i class="fas fa-reply"></i></a>
@@ -85,10 +85,10 @@
                                                     </c:if>
                                                 </c:forEach>
                                                 <c:if test="${f == 1}">
-                                                    <a class="fav" href="<c:url value='/favorite/take?rid=${accountcontribution.id}' />"><i class="fas fa-star"></i></a>
+                                                    <a class="fav" href="<c:url value='/favorite/take?crid=${accountcontribution.id}' />"><i class="fas fa-star"></i></a>
                                                 </c:if>
                                                 <c:if test="${f == 0}">
-                                                    <a class="fav" href="<c:url value='/favorite/add?rid=${accountcontribution.id}' />"><i class="far fa-star"></i></a>
+                                                    <a class="fav" href="<c:url value='/favorite/add?crid=${accountcontribution.id}' />"><i class="far fa-star"></i></a>
                                                 </c:if>
                                                 </c:when>
                                                 </c:choose>
@@ -103,7 +103,7 @@
                                                 <pre class="con"><c:out value="${communityreply.content}" /><br /></pre>
                                                 <c:if test="${communityreply.image != null}">
                                                     <div class="trim">
-                                                        <a href="<c:url value='/getImage?id=${communityreply.id}' />" data-lightbox="group"><img src="<c:url value='/getImage?aid=${communityreply.id}' />" /></a>
+                                                        <a href="<c:url value='/getImage?crid=${communityreply.id}' />" data-lightbox="group"><img src="<c:url value='/getImage?crid=${communityreply.id}' />" /></a>
                                                     </div>
                                                 </c:if>
                                                 <a class="reply" href="<c:url value='/ccreply/new?tid=${communityreply.account.id}' />"><i class="fas fa-reply"></i></a>

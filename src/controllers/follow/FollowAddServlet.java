@@ -48,7 +48,8 @@ public class FollowAddServlet extends HttpServlet {
             em.getTransaction().commit();
             em.close();
 
-            request.getSession().setAttribute("account_id", a.getId());
+            request.getSession().setAttribute("pcheck", 0);
+            request.getSession().setAttribute("aid", a);
             response.sendRedirect(request.getContextPath() + "/account/show");
 
         }

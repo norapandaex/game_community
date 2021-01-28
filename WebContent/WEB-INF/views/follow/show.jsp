@@ -90,7 +90,7 @@
                 <tr>
                     <td id="profile" colspan="4">プロフィール<br /> <pre
                             id="procontent">
-                            <c:out value="${account.profile}" />
+                            <a><c:out value="${account.profile}" /></a>
                         </pre> <input type="hidden" name="_token"
                         value="${_token}" /> <c:if
                             test="${sessionScope.login_account.id == account.id}">
@@ -150,7 +150,7 @@
                                         href="<c:url value='/account/show?id=${follow.follower.id}' />"><c:out
                                                 value="${follow.follower.name}" />@<c:out
                                                 value="${follow.follower.code}" /></a> <pre id="procontent">
-                            <c:out value="${follow.follower.profile}" />
+                            <a><c:out value="${follow.follower.profile}" /></a>
                         </pre></td>
                                 </tr>
                             </c:forEach>

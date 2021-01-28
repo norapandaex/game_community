@@ -1,4 +1,4 @@
-package controllers.follow;
+package controllers.favorite;
 
 import java.io.IOException;
 import java.util.List;
@@ -12,20 +12,20 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import models.Account;
-import models.Follow;
+import models.Favorite;
 import utils.DBUtil;
 
 /**
- * Servlet implementation class FollowShowServlet
+ * Servlet implementation class FavoriteShowServlet
  */
-@WebServlet("/follow/show")
-public class FollowShowServlet extends HttpServlet {
+@WebServlet("/favorite/show")
+public class FavoriteShowServlet extends HttpServlet {
     private static final long serialVersionUID = 1L;
 
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public FollowShowServlet() {
+    public FavoriteShowServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -37,11 +37,27 @@ public class FollowShowServlet extends HttpServlet {
         EntityManager em = DBUtil.createEntityManager();
 
         Account login_account = (Account)request.getSession().getAttribute("login_account");
-        Account a = em.find(Account.class, Integer.parseInt(request.getParameter("id")));
+        Account a = null;
+        Integer pcheck = (Integer)request.getSession().getAttribute("pcheck");
+        if(pcheck == 3) {
+            a = em.find(Account.class, Integer.parseInt((String)request.getSession().getAttribute("aid")));
+            request.getSession().setAttribute("account", a);
+            request.getSession().removeAttribute("aid");
+        } else {
+            a = em.find(Account.class, Integer.parseInt(request.getParameter("id")));
+            request.getSession().setAttribute("account", a);
+            request.getSession().setAttribute("aid", request.getParameter("id"));
+        }
 
-        List<Follow> follows = em.createNamedQuery("getMyFollows", Follow.class)
-                .setParameter("follow", a)
+
+        List<Favorite> fav = em.createNamedQuery("checkFav", Favorite.class)
+                .setParameter("account", a)
                 .getResultList();
+
+        long follow_check = (long)em.createNamedQuery("getFollowCheck", Long.class)
+                .setParameter("follow", login_account)
+                .setParameter("follower", a)
+                .getSingleResult();
 
         long follows_count = (long)em.createNamedQuery("getFollowsCount", Long.class)
                 .setParameter("follow", a)
@@ -55,19 +71,16 @@ public class FollowShowServlet extends HttpServlet {
                 .setParameter("account", a)
                 .getSingleResult();
 
-        long follow_check = (long)em.createNamedQuery("getFollowCheck", Long.class)
-                .setParameter("follow", login_account)
-                .setParameter("follower", a)
-                .getSingleResult();
+        em.close();
 
-        request.setAttribute("follows", follows);
+        request.setAttribute("fav", fav);
+        request.setAttribute("_token", request.getSession().getId());
         request.setAttribute("followsC", follows_count);
         request.setAttribute("followersC", followers_count);
         request.setAttribute("favoritesC", favorites_count);
         request.setAttribute("follow_check", follow_check);
         request.getSession().setAttribute("pcheck", 0);
-
-        RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/views/follow/show.jsp");
+        RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/views/favorite/show.jsp");
         rd.forward(request, response);
     }
 

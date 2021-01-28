@@ -38,6 +38,10 @@ import javax.persistence.Table;
     @NamedQuery(
             name = "getAllFollows",
             query = "SELECT f FROM Follow AS f WHERE f.follow = :follow"
+            ),
+    @NamedQuery(
+            name = "getDeleteFollow",
+            query = "SELECT f FROM Follow AS f WHERE f.follow = :follow AND f.follower = :follower"
             )
 })
 @Entity

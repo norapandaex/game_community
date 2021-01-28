@@ -6,10 +6,10 @@
                     <i class="fab fa-stack-exchange"></i><a>投稿詳細</a>
                 </div>
                 <div class="homesearchform">
-                    <form id="search" action="" method="">
-                        <input id="sbox" name="s" type="text" placeholder="キーワードを入力"/>
-                        <button type="submit" id="sbtn"><i class="fas fa-search"></i></button>
-                    </form>
+                    <form id="search" action="<c:url value='/account/search' />" method="POST">
+                <input id="sbox" name="search" type="text" placeholder="キーワードを入力"/>
+                <button type="submit" id="sbtn"><i class="fas fa-search"></i></button>
+            </form>
                 </div>
                 <div class="homeccontribution" >
                 <div class="searchcommuinty">
@@ -24,7 +24,7 @@
                                                 <pre><a class="con" href="<c:url value='/acreply/new?id=${contribution.id}' />"><c:out value="${contribution.content}" /><br /></a></pre>
                                                 <c:if test="${contribution.image != null}">
                                                     <div class="trim">
-                                                        <a href="<c:url value='/getImage?id=${contribution.id}' />" data-lightbox="group"><img src="<c:url value='/getImage?aid=${contribution.id}' />" /></a>
+                                                        <a href="<c:url value='/getImage?aid=${contribution.id}' />" data-lightbox="group"><img src="<c:url value='/getImage?aid=${contribution.id}' />" /></a>
                                                     </div>
                                                 </c:if>
                                                 <a class="reply" href="<c:url value='/acreply/new?tid=${contribution.account.id}' />"><i class="fas fa-reply"></i></a>
@@ -51,7 +51,7 @@
                                                 <pre class="con"><c:out value="${accountreply.content}" /><br /></pre>
                                                 <c:if test="${accountreply.image != null}">
                                                     <div class="trim">
-                                                        <a href="<c:url value='/getImage?id=${accountreply.id}' />" data-lightbox="group"><img src="<c:url value='/getImage?aid=${accountreply.id}' />" /></a>
+                                                        <a href="<c:url value='/getImage?arid=${accountreply.id}' />" data-lightbox="group"><img src="<c:url value='/getImage?arid=${accountreply.id}' />" /></a>
                                                     </div>
                                                 </c:if>
                                                 <a class="reply" href="<c:url value='/acreply/new?tid=${accountreply.account.id}' />"><i class="fas fa-reply"></i></a>

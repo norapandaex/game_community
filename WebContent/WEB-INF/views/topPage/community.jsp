@@ -7,7 +7,7 @@
         </div>
         <div class="searchform">
             <form id="search" action="<c:url value='/community/search' />" method="POST">
-                <input id="sbox" name="search" type="text" placeholder="キーワードを入力"/>
+                <input id="sbox" name="search" type="text" placeholder="コミュニティーを検索"/>
                 <button type="submit" id="sbtn"><i class="fas fa-search"></i></button>
             </form>
             <input type="hidden" name="_token" value="${_token}" />

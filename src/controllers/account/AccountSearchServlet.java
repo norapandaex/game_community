@@ -36,30 +36,31 @@ public class AccountSearchServlet extends HttpServlet {
      */
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String skeyword = (String) request.getServletContext().getAttribute("skeyword");
-        List<Account> searches = null;
+        List<Account> asearches = null;
+        List<AccountContribution> acsearches = null;
 
         EntityManager em = DBUtil.createEntityManager();
 
         try{
-            searches = em.createNamedQuery("getAccountSearch", Account.class)
-                                         .setParameter("skeyword", "%" + skeyword + "%")
-                                         .setParameter("skeyword", "%" + skeyword + "%")
-                                         .getResultList();
-            request.setAttribute("searches", searches);
+            asearches = em.createNamedQuery("getAccountSearch", Account.class)
+                    .setParameter("skeyword", "%" + skeyword + "%")
+                    .setParameter("skeyword", "%" + skeyword + "%")
+                    .getResultList();
         } catch (NoResultException ex) {}
 
-        if(searches == null) {
-            try{
-                List<AccountContribution> acsearches = em.createNamedQuery("getAccountSearch", AccountContribution.class)
-                                                         .setParameter("skeyword", "%" + skeyword + "%")
-                                                         .setParameter("skeyword", "%" + skeyword + "%")
-                                                         .getResultList();
-                request.setAttribute("acsearches", acsearches);
-            } catch (NoResultException ex) {}
-        }
+        try{
+            acsearches = em.createNamedQuery("getAccountContributionSearch", AccountContribution.class)
+                    .setParameter("skeyword", "%" + skeyword + "%")
+                    .setParameter("skeyword", "%" + skeyword + "%")
+                    .setParameter("skeyword", "%" + skeyword + "%")
+                    .getResultList();
+
+        } catch (NoResultException ex) {}
 
         em.close();
 
+        request.setAttribute("asearches", asearches);
+        request.setAttribute("acsearches", acsearches);
         RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/views/account/search.jsp");
         rd.forward(request, response);
 

@@ -20,6 +20,22 @@ import javax.persistence.Table;
     @NamedQuery(
             name = "getFavoriteCount",
             query = "SELECT COUNT(f) FROM Favorite AS f WHERE f.account = :account"
+            ),
+    @NamedQuery(
+            name = "getDeleteACFavorite",
+            query = "SELECT f FROM Favorite AS f WHERE f.account = :account AND f.accountcontribution = :ac"
+            ),
+    @NamedQuery(
+            name = "getDeleteARFavorite",
+            query = "SELECT f FROM Favorite AS f WHERE f.account = :account AND f.accountreply = :ac"
+            ),
+    @NamedQuery(
+            name = "getDeleteCCFavorite",
+            query = "SELECT f FROM Favorite AS f WHERE f.account = :account AND f.communitycontribution = :ac"
+            ),
+    @NamedQuery(
+            name = "getDeleteCRFavorite",
+            query = "SELECT f FROM Favorite AS f WHERE f.account = :account AND f.communityreply = :ac"
             )
 })
 @Entity

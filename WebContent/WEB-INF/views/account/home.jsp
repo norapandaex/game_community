@@ -7,9 +7,9 @@
                 </div>
                 <div class="homesearchform">
                     <form id="search" action="<c:url value='/account/search' />" method="POST">
-                        <input id="sbox" name="s" type="text" placeholder="キーワードを入力"/>
-                        <button type="submit" id="sbtn"><i class="fas fa-search"></i></button>
-                    </form>
+                <input id="sbox" name="search" type="text" placeholder="キーワードを入力"/>
+                <button type="submit" id="sbtn"><i class="fas fa-search"></i></button>
+            </form>
                 </div>
                 <div class="homeccontribution" >
                                     <form method="POST" enctype="multipart/form-data" action="<c:url value='/accountcontribution/create' />">
@@ -99,7 +99,7 @@
                                                 <pre><a class="con" href="<c:url value='/acreply/new?id=${accountcontribution.id}' />"><c:out value="${accountcontribution.content}" /><br /></a></pre>
                                                 <c:if test="${accountcontribution.image != null}">
                                                     <div class="trim">
-                                                        <a href="<c:url value='/getImage?id=${accountcontribution.id}' />" data-lightbox="group"><img src="<c:url value='/getImage?aid=${accountcontribution.id}' />" /></a>
+                                                        <a href="<c:url value='/getImage?aid=${accountcontribution.id}' />" data-lightbox="group"><img src="<c:url value='/getImage?aid=${accountcontribution.id}' />" /></a>
                                                     </div>
                                                 </c:if>
                                                 <a class="reply" href="<c:url value='/acreply/new?id=${accountcontribution.id}' />"><i class="fas fa-reply"></i></a>

@@ -36,8 +36,9 @@ public class FollowerShowServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         EntityManager em = DBUtil.createEntityManager();
 
-        Account a = null;
-        Integer pcheck = (Integer)request.getSession().getAttribute("pcheck");
+        Account login_account = (Account)request.getSession().getAttribute("login_account");
+        Account a = em.find(Account.class, Integer.parseInt(request.getParameter("id")));
+        /*Integer pcheck = (Integer)request.getSession().getAttribute("pcheck");
         if(pcheck == 3) {
             a = em.find(Account.class, Integer.parseInt((String)request.getSession().getAttribute("aid")));
             request.getSession().setAttribute("account", a);
@@ -45,7 +46,7 @@ public class FollowerShowServlet extends HttpServlet {
             a = em.find(Account.class, Integer.parseInt(request.getParameter("id")));
             request.getSession().setAttribute("account", a);
             request.getSession().setAttribute("aid", request.getParameter("id"));
-        }
+        }*/
 
         List<Follow> followers = em.createNamedQuery("getMyFollowers", Follow.class)
                 .setParameter("follower", a)
@@ -63,10 +64,16 @@ public class FollowerShowServlet extends HttpServlet {
                 .setParameter("account", a)
                 .getSingleResult();
 
+        long follow_check = (long)em.createNamedQuery("getFollowCheck", Long.class)
+                .setParameter("follow", login_account)
+                .setParameter("follower", a)
+                .getSingleResult();
+
         request.setAttribute("followers", followers);
         request.setAttribute("followsC", follows_count);
         request.setAttribute("followersC", followers_count);
         request.setAttribute("favoritesC", favorites_count);
+        request.setAttribute("follow_check", follow_check);
         request.getSession().setAttribute("pcheck", 0);
 
         RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/views/follower/show.jsp");

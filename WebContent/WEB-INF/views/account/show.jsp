@@ -89,7 +89,7 @@
                 <tr>
                     <td id="profile" colspan="4">プロフィール<br /> <pre
                             id="procontent">
-                            <c:out value="${account.profile}" />
+                            <a><c:out value="${account.profile}" /></a>
                         </pre> <input type="hidden" name="_token"
                         value="${_token}" /> <c:if
                             test="${sessionScope.login_account.id == account.id}">

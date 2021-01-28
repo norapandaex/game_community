@@ -130,7 +130,7 @@
                                                 <pre><a class="con" href="<c:url value='/community/show?id=${communitycontribution.id}' />"><c:out value="${communitycontribution.content}" /><br /></a></pre>
                                                 <c:if test="${communitycontribution.image != null}">
                                                     <div class="trim">
-                                                        <a href="<c:url value='/getImage?id=${communitycontribution.id}' />" data-lightbox="group"><img src="<c:url value='/getImage?cid=${communitycontribution.id}' />" /></a>
+                                                        <a href="<c:url value='/getImage?cid=${communitycontribution.id}' />" data-lightbox="group"><img src="<c:url value='/getImage?cid=${communitycontribution.id}' />" /></a>
                                                     </div>
                                                 </c:if>
                                                 <a class="reply" href="<c:url value='/ccreply/new?id=${communitycontribution.id}' />"><i class="fas fa-reply"></i></a>

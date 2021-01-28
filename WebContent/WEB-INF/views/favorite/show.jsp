@@ -24,7 +24,7 @@
                                 <c:choose>
                                     <c:when test="${sessionScope.login_account.id != account.id}">
                                         <c:choose>
-                                            <c:when test="${follow_check == 0 || follow_check == null}">
+                                            <c:when test="${follow_check == 0  || follow_check == null}">
                                                 <label for="popup01" class="followbutton">フォロー</label>
                                             </c:when>
                                             <c:otherwise>
@@ -138,22 +138,78 @@
         </div>
         <div class="flist">
             <c:choose>
-                <c:when test="${followers != null}">
+                <c:when test="${fav != null}">
                     <table>
                         <tbody>
                             <tr>
-                                <th><a id=""><i class="fas fa-male"></i>&nbsp;フォロワーリスト</a></th>
+                                <th><a id=""><i class="fas fa-star"></i>&nbsp;お気に入り一覧</a></th>
                             </tr>
-                            <c:forEach var="follow" items="${followers}" varStatus="status">
-                                <tr>
-                                    <td><a
-                                        href="<c:url value='/account/show?id=${follow.follow.id}' />"><c:out
-                                                value="${follow.follow.name}" />@<c:out
-                                                value="${follow.follow.code}" /></a> <pre id="procontent">
-                            <a><c:out value="${follow.follow.profile}" /></a>
-                        </pre></td>
-                                </tr>
-                            </c:forEach>
+                            <c:forEach var="favorite" items="${fav}" varStatus="status">
+                            <c:if test="${favorite.accountcontribution != null}">
+                                            <tr>
+                                                <td>
+                                                <a class="conname" href="<c:url value='/account/show?id=${favorite.accountcontribution.account.id}' />"><c:out value="${favorite.accountcontribution.account.name}" />@<c:out value="${favorite.accountcontribution.account.code}"></c:out></a>
+                                                <pre><a class="con" href="<c:url value='/acreply/new?id=${favorite.accountcontribution.id}' />"><c:out value="${favorite.accountcontribution.content}" /><br /></a></pre>
+                                                <c:if test="${favorite.accountcontribution.image != null}">
+                                                    <div class="trim">
+                                                        <a href="<c:url value='/getImage?aid=${favorite.accountcontribution.id}' />" data-lightbox="group"><img src="<c:url value='/getImage?aid=${favorite.accountcontribution.id}' />" /></a>
+                                                    </div>
+                                                </c:if>
+                                                <a class="reply" href="<c:url value='/acreply/new?id=${favorite.accountcontribution.id}' />"><i class="fas fa-reply"></i></a>
+                                                    <a class="fav" href="<c:url value='/favorite/take?aid=${favorite.accountcontribution.id}' />"><i class="fas fa-star"></i></a>
+                                                <a class="time"><c:out value="${favorite.accountcontribution.created_at}"></c:out></a>
+                                                </td>
+                                            </tr>
+                                         </c:if>
+                                         <c:if test="${favorite.accountreply != null}">
+                                            <tr>
+                                                <td>
+                                                <a class="conname" href="<c:url value='/account/show?id=${favorite.accountreply.account.id}' />"><c:out value="${favorite.accountreply.account.name}" />@<c:out value="${favorite.accountreply.account.code}"></c:out></a>
+                                                <pre><a class="con" href="<c:url value='/acreply/new?id=${favorite.accountreply.id}' />"><c:out value="${favorite.accountreply.content}" /><br /></a></pre>
+                                                <c:if test="${favorite.accountreply.image != null}">
+                                                    <div class="trim">
+                                                        <a href="<c:url value='/getImage?arid=${favorite.accountreply.id}' />" data-lightbox="group"><img src="<c:url value='/getImage?arid=${favorite.accountreply.id}' />" /></a>
+                                                    </div>
+                                                </c:if>
+                                                <a class="reply" href="<c:url value='/acreply/new?id=${favorite.accountreply.id}' />"><i class="fas fa-reply"></i></a>
+                                                    <a class="fav" href="<c:url value='/favorite/take?aid=${favorite.accountreply.id}' />"><i class="fas fa-star"></i></a>
+                                                <a class="time"><c:out value="${favorite.accountreply.created_at}"></c:out></a>
+                                                </td>
+                                            </tr>
+                                         </c:if>
+                                         <c:if test="${favorite.communitycontribution != null}">
+                                            <tr>
+                                                <td>
+                                                <a class="conname" href="<c:url value='/account/show?id=${favorite.communitycontribution.account.id}' />"><c:out value="${favorite.communitycontribution.account.name}" />@<c:out value="${favorite.communitycontribution.account.code}"></c:out></a>
+                                                <pre><a class="con" href="<c:url value='/acreply/new?id=${favorite.communitycontribution.id}' />"><c:out value="${favorite.communitycontribution.content}" /><br /></a></pre>
+                                                <c:if test="${favorite.communitycontribution.image != null}">
+                                                    <div class="trim">
+                                                        <a href="<c:url value='/getImage?cid=${favorite.communitycontribution.id}' />" data-lightbox="group"><img src="<c:url value='/getImage?cid=${favorite.communitycontribution.id}' />" /></a>
+                                                    </div>
+                                                </c:if>
+                                                <a class="reply" href="<c:url value='/acreply/new?id=${favorite.communitycontribution.id}' />"><i class="fas fa-reply"></i></a>
+                                                    <a class="fav" href="<c:url value='/favorite/take?aid=${favorite.communitycontribution.id}' />"><i class="fas fa-star"></i></a>
+                                                <a class="time"><c:out value="${favorite.communitycontribution.created_at}"></c:out></a>
+                                                </td>
+                                            </tr>
+                                         </c:if>
+                                         <c:if test="${favorite.communityreply != null}">
+                                            <tr>
+                                                <td>
+                                                <a class="conname" href="<c:url value='/account/show?id=${favorite.communityreply.account.id}' />"><c:out value="${favorite.communityreply.account.name}" />@<c:out value="${favorite.communityreply.account.code}"></c:out></a>
+                                                <pre><a class="con" href="<c:url value='/acreply/new?id=${favorite.communityreply.id}' />"><c:out value="${favorite.communityreply.content}" /><br /></a></pre>
+                                                <c:if test="${favorite.communityreply.image != null}">
+                                                    <div class="trim">
+                                                        <a href="<c:url value='/getImage?crid=${favorite.communityreply.id}' />" data-lightbox="group"><img src="<c:url value='/getImage?crid=${favorite.communityreply.id}' />" /></a>
+                                                    </div>
+                                                </c:if>
+                                                <a class="reply" href="<c:url value='/acreply/new?id=${favorite.communityreply.id}' />"><i class="fas fa-reply"></i></a>
+                                                    <a class="fav" href="<c:url value='/favorite/take?aid=${favorite.communityreply.id}' />"><i class="fas fa-star"></i></a>
+                                                <a class="time"><c:out value="${favorite.communityreply.created_at}"></c:out></a>
+                                                </td>
+                                            </tr>
+                                         </c:if>
+                                        </c:forEach>
                         </tbody>
                     </table>
                 </c:when>
@@ -161,7 +217,7 @@
                     <table>
                         <tbody>
                             <tr>
-                                <th class="reload"><a>誰かフォローしてコミュニティを広げよう！</a></th>
+                                <th class="reload"><a>お気に入りの投稿はありません。</a></th>
                             </tr>
                         </tbody>
                     </table>

@@ -17,7 +17,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import models.AccountContribution;
+import models.AccountReply;
 import models.CommunityContribution;
+import models.CommunityReply;
 import utils.DBUtil;
 
 /**
@@ -41,7 +43,9 @@ public class ImageGetServlet extends HttpServlet {
         BufferedOutputStream bout=null;
         InputStream in =null;
         CommunityContribution cc = null;
+        CommunityReply cr = null;
         AccountContribution ac = null;
+        AccountReply ar = null;
 
         response.setContentType("image/jpeg");
         ServletOutputStream out;
@@ -54,11 +58,20 @@ public class ImageGetServlet extends HttpServlet {
             cc = em.find(CommunityContribution.class, Integer.parseInt(cid));
         }
 
+        String crid = request.getParameter("crid");
+        if(crid != null) {
+            cr = em.find(CommunityReply.class, Integer.parseInt(crid));
+        }
+
         String aid = request.getParameter("aid");
         if(aid != null) {
             ac = em.find(AccountContribution.class, Integer.parseInt(aid));
         }
 
+        String arid = request.getParameter("arid");
+        if(arid != null) {
+            ar = em.find(AccountReply.class, Integer.parseInt(arid));
+        }
 
         try {
             if(cc != null){
@@ -67,6 +80,12 @@ public class ImageGetServlet extends HttpServlet {
             } else if(ac != null){
                 Blob ab = ac.getImage();
                 in = ab.getBinaryStream();
+            } else if(cr != null){
+                Blob crb = cr.getImage();
+                in = crb.getBinaryStream();
+            } else if(ar != null){
+                Blob arb = ar.getImage();
+                in = arb.getBinaryStream();
             }
 
             bin = new BufferedInputStream(in);

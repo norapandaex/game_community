@@ -910,16 +910,19 @@ i.fas.fa-male {
 #follow {
     width: 15%;
     vertical-align: baseline;
+    min-width: 80px;
 }
 
 #follower {
     width: 15%;
     vertical-align: baseline;
+    min-width: 80px;
 }
 
 #fav {
     width: 15%;
     vertical-align: baseline;
+    min-width: 80px;
 }
 
 #profile {
@@ -943,7 +946,7 @@ i.fas.fa-male {
     width: 70px;
     height: 70px;
     padding: 0;
-    bottom: 10px;
+    bottom: 25px;
     float: right;
     background-color: #23396a;
 }
@@ -959,6 +962,10 @@ i.fas.fa-male {
     float: left;
     width: 80%;
     font-size: 15px;
+}
+
+#procontent a{
+    padding: 0px 0px 0px 10px;
 }
 
 .conname {
@@ -1088,6 +1095,24 @@ i.fas.fa-male {
     width: 30%;
     min-width: 600px;
     margin: auto;
+}
+
+#asearchlist {
+    width: 30%;
+    min-width: 600px;
+    margin: 10px auto 10px auto;
+}
+
+#acsearchlist {
+    width: 30%;
+    min-width: 600px;
+    margin: 10px auto 10px auto;
+}
+
+#noresult {
+    width: 30%;
+    min-width: 600px;
+    margin: 10px auto 10px auto;
 }
 
 .reply {
