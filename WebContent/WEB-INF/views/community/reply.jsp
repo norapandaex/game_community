@@ -17,7 +17,7 @@
                                             <input type="checkbox" id="popup01" class="popupCheck">
                                             <div class="wrapper" align="center">
                                                 <c:choose>
-                                                    <c:when test="${community_account.community != community}">
+                                                    <c:when test="${community_account.community.id != community.id}">
                                                         <div class="button small">
                                                             <label for="popup01">参加</label>
                                                         </div>
@@ -36,7 +36,7 @@
                                                                 <div class="popupInner">
                                                                         <div class="popupText">
                                                                                 <c:choose>
-                                                                        <c:when test="${community_account.community != community}">
+                                                                        <c:when test="${community_account.community.id != community.id}">
                                                                                 <p>このコミュニティに参加しますか？</p>
                                                                                 <a href="<c:url value='/member/add?id=${community.id}' />" id="yes">はい</a>
                                                                                 <label for="popup01" class="popup_Close"><a id="no">いいえ</a></label>
@@ -149,7 +149,7 @@
                             </c:when>
                             <c:otherwise>
                             <c:choose>
-                                <c:when test="${community_account.community != community}">
+                                <c:when test="${community_account.community.id != community.id}">
                                     <h1 id="conlogin">コメントするにはこのコミュニティに参加してください。</h1>
                                 </c:when>
                                 <c:otherwise>

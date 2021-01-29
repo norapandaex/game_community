@@ -28,8 +28,8 @@
                             <td class="repcon"><a class="conname"
                                 href="<c:url value='/account/show?id=${contribution.account.id}' />"><c:out
                                         value="${contribution.account.name}" />@<c:out
-                                        value="${contribution.account.code}"></c:out></a> <pre>
-                                    <a class="con"
+                                        value="${contribution.account.code}"></c:out></a> <pre   class="con2">
+                                    <a
                                         href="<c:url value='/acreply/new?id=${contribution.id}' />"><c:out
                                             value="${contribution.content}" /><br /></a>
                                 </pre> <c:if test="${contribution.image != null}">
@@ -67,9 +67,9 @@
                                                 value="${accountreply.account.code}" />︎</a> <a class="repname"
                                         href="<c:url value='/account/show?id=${accountreply.to_account.id}' />">To&nbsp;<c:out
                                                 value="${accountreply.to_account.name}" />@<c:out
-                                                value="${accountreply.to_account.code}"></c:out></a> <pre
-                                            class="con">
-                                            <c:out value="${accountreply.content}" />
+                                                value="${accountreply.to_account.code}"></c:out></a>
+                                                <pre class="con2">
+                                            <a><c:out value="${accountreply.content}" /></a>
                                             <br />
                                         </pre> <c:if test="${accountreply.image != null}">
                                             <div class="trim">

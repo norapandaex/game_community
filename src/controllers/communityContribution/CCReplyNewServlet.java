@@ -39,15 +39,16 @@ public class CCReplyNewServlet extends HttpServlet {
      * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
      */
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        List<CommunityMember> mycommu = null;
         Account login_account = (Account)request.getSession().getAttribute("login_account");
         String cc_id = request.getParameter("id");
         String to_id = request.getParameter("tid");
         CommunityContribution cc = null;
+        CommunityMember cm = null;
         Account a = null;
 
         EntityManager em = DBUtil.createEntityManager();
         Community c = em.find(Community.class, Integer.parseInt((String)request.getSession().getAttribute("cid")));
+        request.getSession().setAttribute("community", c);
 
         if(cc_id == null){
             cc = (CommunityContribution)request.getSession().getAttribute("contribution");
@@ -76,9 +77,10 @@ public class CCReplyNewServlet extends HttpServlet {
                 .getSingleResult();
 
         try{
-            mycommu = em.createNamedQuery("getMyCommunity", CommunityMember.class)
-                        .setParameter("account", login_account)
-                        .getResultList();
+            cm = em.createNamedQuery("checkAdd", CommunityMember.class)
+                    .setParameter("account", login_account)
+                    .setParameter("c", c)
+                    .getSingleResult();
         } catch(NoResultException ex)  {}
 
         em.close();
@@ -86,10 +88,10 @@ public class CCReplyNewServlet extends HttpServlet {
         request.setAttribute("creplies", creplies);
         request.setAttribute("fav", fav);
         request.setAttribute("members_count", communitymember_count);
-        request.getSession().setAttribute("mycommu", mycommu);
+        request.setAttribute("community_account", cm);
         request.getSession().setAttribute("myaccount", login_account);
         request.getSession().setAttribute("contribution", cc);
-        request.getSession().setAttribute("pcheck", 1);
+        request.getSession().setAttribute("pcheck", 4);
         request.getSession().setAttribute("p", 4);
         RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/views/community/reply.jsp");
         rd.forward(request, response);

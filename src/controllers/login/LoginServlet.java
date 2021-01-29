@@ -98,6 +98,8 @@ public class LoginServlet extends HttpServlet {
                 response.sendRedirect(request.getContextPath() + "/community/show");
             } else if(pcheck == 3){
                 response.sendRedirect(request.getContextPath() + "/account/show");
+            } else if(pcheck == 4){
+                response.sendRedirect(request.getContextPath() + "/ccreply/new");
             }
         }
     }

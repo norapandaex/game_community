@@ -17,7 +17,7 @@
                                             <input type="checkbox" id="popup01" class="popupCheck">
                                             <div class="wrapper" align="center">
                                                 <c:choose>
-                                                    <c:when test="${community_account.community != community}">
+                                                    <c:when test="${community_account.community.id != community.id}">
                                                         <div class="button small">
                                                             <label for="popup01">参加</label>
                                                         </div>
@@ -36,7 +36,7 @@
                                                                 <div class="popupInner">
                                                                         <div class="popupText">
                                                                         <c:choose>
-                                                                        <c:when test="${community_account.community != community}">
+                                                                        <c:when test="${community_account.community.id != community.id}">
                                                                                 <p>このコミュニティに参加しますか？</p>
                                                                                 <a href="<c:url value='/member/add?id=${community.id}' />" id="yes">はい</a>
                                                                                 <label for="popup01" class="popup_Close"><a id="no">いいえ</a></label>
@@ -78,7 +78,7 @@
                             </c:when>
                             <c:otherwise>
                             <c:choose>
-                                <c:when test="${community_account.community != community}">
+                                <c:when test="${community_account.community.id != community.id}">
                                     <h1 id="conlogin">投稿するにはこのコミュニティに参加してください。</h1>
                                 </c:when>
                                 <c:otherwise>
@@ -139,7 +139,7 @@
                                             <tr>
                                                 <td>
                                                 <a class="conname" href="<c:url value='/account/show?id=${communitycontribution.account.id}' />"><c:out value="${communitycontribution.account.name}" />@<c:out value="${communitycontribution.account.code}" /></a>
-                                                <pre><a class="con" href="<c:url value='/community/show?id=${communitycontribution.id}' />"><c:out value="${communitycontribution.content}" /><br /></a></pre>
+                                                <pre><a class="con" href="<c:url value='/ccreply/new?id=${communitycontribution.id}' />"><c:out value="${communitycontribution.content}" /><br /></a></pre>
                                                 <c:if test="${communitycontribution.image != null}">
                                                     <div class="trim">
                                                         <a href="<c:url value='/getImage?cid=${communitycontribution.id}' />" data-lightbox="group"><img src="<c:url value='/getImage?cid=${communitycontribution.id}' />" /></a>

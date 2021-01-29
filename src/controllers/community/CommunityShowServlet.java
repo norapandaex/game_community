@@ -62,8 +62,6 @@ public class CommunityShowServlet extends HttpServlet {
             request.getSession().setAttribute("community", c);
         }
 
-        //Community c = em.find(Community.class, Integer.parseInt((String)request.getSession().getAttribute("cid")));
-
         List<Favorite> fav = em.createNamedQuery("checkFav", Favorite.class)
                 .setParameter("account", login_account)
                 .getResultList();
