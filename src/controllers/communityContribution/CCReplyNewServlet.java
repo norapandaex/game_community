@@ -13,6 +13,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import models.Account;
+import models.Community;
 import models.CommunityContribution;
 import models.CommunityMember;
 import models.CommunityReply;
@@ -46,6 +47,7 @@ public class CCReplyNewServlet extends HttpServlet {
         Account a = null;
 
         EntityManager em = DBUtil.createEntityManager();
+        Community c = em.find(Community.class, Integer.parseInt((String)request.getSession().getAttribute("cid")));
 
         if(cc_id == null){
             cc = (CommunityContribution)request.getSession().getAttribute("contribution");
@@ -69,6 +71,10 @@ public class CCReplyNewServlet extends HttpServlet {
                                .setParameter("account", login_account)
                                .getResultList();
 
+        long communitymember_count = (long)em.createNamedQuery("getMemberCount", Long.class)
+                .setParameter("c", c)
+                .getSingleResult();
+
         try{
             mycommu = em.createNamedQuery("getMyCommunity", CommunityMember.class)
                         .setParameter("account", login_account)
@@ -79,6 +85,7 @@ public class CCReplyNewServlet extends HttpServlet {
 
         request.setAttribute("creplies", creplies);
         request.setAttribute("fav", fav);
+        request.setAttribute("members_count", communitymember_count);
         request.getSession().setAttribute("mycommu", mycommu);
         request.getSession().setAttribute("myaccount", login_account);
         request.getSession().setAttribute("contribution", cc);

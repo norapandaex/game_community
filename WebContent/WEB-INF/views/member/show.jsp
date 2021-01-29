@@ -15,7 +15,7 @@
                                                 <td>
                                                 <a class="conname" href="<c:url value='/account/show?id=${communitymember.account.id}' />"><c:out value="${communitymember.account.name}" />@<c:out value="${communitymember.account.code}" /></a>
                                                 <pre id="procontent">
-                            <c:out value="${communitymember.account.profile}" />
+                            <a><c:out value="${communitymember.account.profile}" /></a>
                         </pre>
                                                 </td>
                                             </tr>

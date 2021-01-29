@@ -28,7 +28,7 @@ import javax.persistence.Table;
             ),
     @NamedQuery(
             name = "getAccountContributionSearch",
-            query = "SELECT ac FROM AccountContribution AS ac WHERE (ac.content LIKE :skeyword or ac.account.name LIKE :skeyword or ac.account.code LIKE :skeyword) ORDER BY ac.id DESC"
+            query = "SELECT ac FROM AccountContribution AS ac WHERE (ac.content LIKE :content or ac.account.name LIKE :name or ac.account.code = :code) ORDER BY ac.id DESC"
             )
 })
 @Entity

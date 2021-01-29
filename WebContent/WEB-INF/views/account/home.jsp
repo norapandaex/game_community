@@ -82,7 +82,7 @@
                 </div>
                 <div class="timeline">
                     <hr class="hr1" />
-                    <div class="searchcommuinty">
+                    <div id="hometimeline">
                             <c:choose>
                             <c:when test="${acontributions.size() != 0}">
                             <table>
@@ -93,6 +93,7 @@
                                         <c:forEach var="accountcontribution" items="${acontributions}" varStatus="status">
                                         <c:forEach var="follow" items="${myfollows}" varStatus="status">
                                         <c:if test="${accountcontribution.account == follow.follower}">
+                                        <c:if test="${accountcontribution.delete_flag == 0}">
                                             <tr>
                                                 <td>
                                                 <a class="conname" href="<c:url value='/account/show?id=${accountcontribution.account.id}' />"><c:out value="${accountcontribution.account.name}" />@<c:out value="${accountcontribution.account.code}"></c:out></a>
@@ -115,9 +116,13 @@
                                                 <c:if test="${f == 0}">
                                                     <a class="fav" href="<c:url value='/favorite/add?aid=${accountcontribution.id}' />"><i class="far fa-star"></i></a>
                                                 </c:if>
+                                                <c:if test="${login_account.id == accountcontribution.account.id}">
+                                                    <a class="fav" href="<c:url value='/accountcontribution/destroy?aid=${accountcontribution.id}' />"><i class="far fa-trash-alt"></i></a>
+                                                </c:if>
                                                 <a class="time"><c:out value="${accountcontribution.created_at}"></c:out></a>
                                                 </td>
                                             </tr>
+                                            </c:if>
                                         </c:if>
                                         </c:forEach>
                                         </c:forEach>

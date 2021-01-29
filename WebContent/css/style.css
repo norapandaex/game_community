@@ -92,7 +92,7 @@ a:active {
     width: 60%;
     float: left;
     min-width: 600px;
-    max-width: 50%;
+    max-width: 60%;
     margin: 20px auto 20px auto;
 }
 
@@ -558,6 +558,20 @@ textarea:focus {
     min-width: 600px;
 }
 
+#hometimeline {
+    width: 60%;
+    padding-top: 10px;
+    min-width: 600px;
+    margin: auto;
+}
+
+#communitytimeline {
+    width: 60%;
+    padding-top: 10px;
+    min-width: 600px;
+    margin: auto;
+}
+
 .searchform {
     float: left;
     width: 60%;
@@ -572,6 +586,7 @@ background:#eee;
 left: 25px;
 top: 15px;
 }
+
 #sbox{
 height:50px;
 padding:0 10px;
@@ -584,6 +599,17 @@ background:#eee;
 border:none;
 }
 
+#sbox2 {
+    height: 50px;
+    padding: 0 10px;
+    left: 0;
+    top: 0;
+    border-radius: 2px;
+    outline: 0;
+    background: #eee;
+    border: none;
+}
+
 #sbtn{
 height:50px;
 position:absolute;
@@ -594,7 +620,21 @@ border:none;
 font-size:20px;/*アイコンサイズ*/
 }
 
+#sbtn2 {
+    height: 50px;
+    position: absolute;
+    left: 230px;
+    top: 0;
+    color: #666;
+    border: none;
+    font-size: 20px;
+}
+
 #sbtn:hover{
+color:#7fbfff;
+}
+
+#sbtn2:hover{
 color:#7fbfff;
 }
 
@@ -1106,6 +1146,13 @@ i.fas.fa-male {
 #acsearchlist {
     width: 30%;
     min-width: 600px;
+    margin: 10px auto 10px auto;
+}
+
+#searchsearchform {
+    width: 270px;
+    max-width: 30%;
+    display: block;
     margin: 10px auto 10px auto;
 }
 

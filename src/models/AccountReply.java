@@ -24,6 +24,10 @@ import javax.persistence.Table;
     @NamedQuery(
             name = "getAccountReplyCount",
             query = "SELECT COUNT(ar) FROM AccountReply AS ar WHERE ar.accountcontribution = :ac"
+            ),
+    @NamedQuery(
+            name = "getAccountReplySearch",
+            query = "SELECT ar FROM AccountReply AS ar WHERE (ar.content LIKE :content or ar.account.name LIKE :name or ar.account.code = :code) ORDER BY ar.id DESC"
             )
 })
 @Entity

@@ -32,7 +32,7 @@ import javax.persistence.Table;
             ),
     @NamedQuery(
             name = "getAccountSearch",
-            query = "SELECT a FROM Account AS a WHERE (a.name LIKE :skeyword OR a.code LIKE :skeyword) ORDER BY a.id DESC"
+            query = "SELECT a FROM Account AS a WHERE (a.name LIKE :name OR a.code = :code OR a.profile LIKE :profile) ORDER BY a.id DESC"
             )
 })
 @Entity

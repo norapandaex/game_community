@@ -21,6 +21,13 @@
                                                         <div class="button small">
                                                             <label for="popup01">参加</label>
                                                         </div>
+                                                    </c:when>
+                                                    <c:otherwise>
+                                                          <div class="button small">
+                                                            <label for="popup01">参加済み</label>
+                                                        </div>
+                                                     </c:otherwise>
+                                                 </c:choose>
                                                         <div id="popup01Con" class="popupWrap">
                                                             <div class="popupBg">
                                                                 <label for="popup01" class="popup_Close"></label>
@@ -28,20 +35,24 @@
                                                             <div class="popupCon">
                                                                 <div class="popupInner">
                                                                         <div class="popupText">
+                                                                        <c:choose>
+                                                                        <c:when test="${community_account.community != community}">
                                                                                 <p>このコミュニティに参加しますか？</p>
-                                                                                <a href="<c:url value='/member/add' />" id="yes">はい</a>
+                                                                                <a href="<c:url value='/member/add?id=${community.id}' />" id="yes">はい</a>
                                                                                 <label for="popup01" class="popup_Close"><a id="no">いいえ</a></label>
+                                                                        </c:when>
+                                                                        <c:otherwise>
+                                                                                <p>このコミュニティを抜けますか？</p>
+                                                                                <a href="<c:url value='/member/take?id=${community.id}' />" id="yes">はい</a>
+                                                                                <label for="popup01" class="popup_Close"><a id="no">いいえ</a></label>
+                                                                        </c:otherwise>
+                                                                        </c:choose>
                                                                         </div>
                                                                 </div>
                                                             </div>
                                                         </div>
-                                                     </c:when>
-                                                     <c:otherwise>
-                                                          <div class="button small">
-                                                            <label for="popup01">参加済み</label>
-                                                        </div>
-                                                     </c:otherwise>
-                                                 </c:choose>
+
+
                                              </div>
                                         </c:if>
                                     </div>
@@ -115,7 +126,7 @@
                     </div>
                     <div class="ctimeline">
                         <hr class="hr1" />
-                        <div class="searchcommuinty">
+                        <div id="commuintytimeline">
                             <c:choose>
                             <c:when test="${contributions.size() != 0}">
                             <table>
@@ -124,6 +135,7 @@
                                             <th class="reload"><a class="reload" href="<c:url value='/community/show' />"><i class="fas fa-redo-alt"></i>更新</a></th>
                                         </tr>
                                         <c:forEach var="communitycontribution" items="${contributions}" varStatus="status">
+                                        <c:if test="${communitycontribution.delete_flag == 0}">
                                             <tr>
                                                 <td>
                                                 <a class="conname" href="<c:url value='/account/show?id=${communitycontribution.account.id}' />"><c:out value="${communitycontribution.account.name}" />@<c:out value="${communitycontribution.account.code}" /></a>
@@ -148,11 +160,15 @@
                                                 <c:if test="${f == 0}">
                                                     <a class="fav" href="<c:url value='/favorite/add?cid=${communitycontribution.id}' />"><i class="far fa-star"></i></a>
                                                 </c:if>
+                                                <c:if test="${login_account.id == communitycontribution.account.id}">
+                                                    <a class="fav" href="<c:url value='/communitycontribution/destroy?cid=${communitycontribution.id}' />"><i class="far fa-trash-alt"></i></a>
+                                                </c:if>
                                                 </c:when>
                                                 </c:choose>
                                                 <a class="time"><c:out value="${communitycontribution.created_at}"></c:out></a>
                                                 </td>
                                             </tr>
+                                            </c:if>
                                         </c:forEach>
                                     </tbody>
                             </table>

@@ -55,7 +55,7 @@ public class TopPageServlet extends HttpServlet {
 
         request.setAttribute("communities", communities);
         request.getSession().setAttribute("mycommu", mycommu);
-
+        request.getSession().removeAttribute("l");
         request.getSession().setAttribute("pcheck", 0);
         RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/views/topPage/community.jsp");
         rd.forward(request, response);

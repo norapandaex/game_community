@@ -28,6 +28,7 @@ public class LogoutServlet extends HttpServlet {
      */
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         request.getSession().removeAttribute("login_account");
+        request.getSession().setAttribute("l", 1);
         Integer pcheck = (Integer)request.getSession().getAttribute("pcheck");
 
         if(pcheck == 2){

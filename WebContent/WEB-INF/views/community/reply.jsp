@@ -21,6 +21,13 @@
                                                         <div class="button small">
                                                             <label for="popup01">参加</label>
                                                         </div>
+                                                    </c:when>
+                                                    <c:otherwise>
+                                                          <div class="button small">
+                                                            <label for="popup01">参加済み</label>
+                                                        </div>
+                                                     </c:otherwise>
+                                                 </c:choose>
                                                         <div id="popup01Con" class="popupWrap">
                                                             <div class="popupBg">
                                                                 <label for="popup01" class="popup_Close"></label>
@@ -28,20 +35,22 @@
                                                             <div class="popupCon">
                                                                 <div class="popupInner">
                                                                         <div class="popupText">
+                                                                                <c:choose>
+                                                                        <c:when test="${community_account.community != community}">
                                                                                 <p>このコミュニティに参加しますか？</p>
-                                                                                <a href="<c:url value='/member/add' />" id="yes">はい</a>
+                                                                                <a href="<c:url value='/member/add?id=${community.id}' />" id="yes">はい</a>
                                                                                 <label for="popup01" class="popup_Close"><a id="no">いいえ</a></label>
+                                                                        </c:when>
+                                                                        <c:otherwise>
+                                                                                <p>このコミュニティを抜けますか？</p>
+                                                                                <a href="<c:url value='/member/take?id=${community.id}' />" id="yes">はい</a>
+                                                                                <label for="popup01" class="popup_Close"><a id="no">いいえ</a></label>
+                                                                        </c:otherwise>
+                                                                        </c:choose>
                                                                         </div>
                                                                 </div>
                                                             </div>
                                                         </div>
-                                                     </c:when>
-                                                     <c:otherwise>
-                                                          <div class="button small">
-                                                            <label for="popup01">参加済み</label>
-                                                        </div>
-                                                     </c:otherwise>
-                                                 </c:choose>
                                              </div>
                                         </c:if>
                                     </div>
@@ -96,6 +105,7 @@
                                              </td>
                                         </tr>
                                         <c:forEach var="communityreply" items="${creplies}" varStatus="status">
+                                        <c:if test="${communityreply.delete_flag == 0}">
                                             <tr>
                                                 <td>
                                                 <a class="conname" href="<c:url value='/account/show?id=${communityreply.account.id}' />"><c:out value="${communityreply.account.name}" />@<c:out value="${communityreply.account.code}" />︎</a>
@@ -119,9 +129,13 @@
                                                 <c:if test="${f == 0}">
                                                     <a class="fav" href="<c:url value='/favorite/add?crid=${communityreply.id}' />"><i class="far fa-star"></i></a>
                                                 </c:if>
+                                                <c:if test="${login_account.id == communityreply.account.id}">
+                                                    <a class="fav" href="<c:url value='/ccreply/destroy?crid=${communityreply.id}' />"><i class="far fa-trash-alt"></i></a>
+                                                </c:if>
                                                 <a class="time"><c:out value="${communityreply.created_at}"></c:out></a>
                                                 </td>
                                             </tr>
+                                            </c:if>
                                         </c:forEach>
                                     </tbody>
                             </table>

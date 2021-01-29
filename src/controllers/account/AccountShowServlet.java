@@ -32,15 +32,17 @@ public class AccountShowServlet extends HttpServlet {
      * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
      */
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        EntityManager em = DBUtil.createEntityManager();
-
         Account login_account = (Account)request.getSession().getAttribute("login_account");
         Account a = null;
-        Integer pcheck = (Integer)request.getSession().getAttribute("pcheck");
-        if(pcheck == 3) {
+        Integer l = (Integer)request.getSession().getAttribute("l");
+
+        EntityManager em = DBUtil.createEntityManager();
+
+        if(l != null) {
             a = em.find(Account.class, Integer.parseInt((String)request.getSession().getAttribute("aid")));
             request.getSession().setAttribute("account", a);
             request.getSession().removeAttribute("aid");
+            request.getSession().removeAttribute("l");
         } else {
             if(request.getParameter("id") != null){
                 a = em.find(Account.class, Integer.parseInt(request.getParameter("id")));

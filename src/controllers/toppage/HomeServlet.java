@@ -70,6 +70,7 @@ public class HomeServlet extends HttpServlet {
         request.getSession().setAttribute("myaccount", login_account);
         request.getSession().setAttribute("pcheck", 1);
         request.getSession().setAttribute("p", 1);
+        request.getSession().removeAttribute("l");
         RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/views/account/home.jsp");
         rd.forward(request, response);
     }

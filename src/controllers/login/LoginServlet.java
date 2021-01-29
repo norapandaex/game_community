@@ -87,6 +87,7 @@ public class LoginServlet extends HttpServlet {
             rd.forward(request, response);
         } else {
             request.getSession().setAttribute("login_account", a);
+            request.getSession().setAttribute("l", 1);
             Integer pcheck = (Integer)request.getSession().getAttribute("pcheck");
 
             if(pcheck == 0){

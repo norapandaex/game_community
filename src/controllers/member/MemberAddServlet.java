@@ -35,7 +35,7 @@ public class MemberAddServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
             EntityManager em = DBUtil.createEntityManager();
 
-            Community c = em.find(Community.class, Integer.parseInt((String)request.getSession().getAttribute("cid")));
+            Community c = em.find(Community.class, Integer.parseInt(request.getParameter("id")));
 
             CommunityMember cm = new CommunityMember();
 
@@ -47,6 +47,7 @@ public class MemberAddServlet extends HttpServlet {
             em.getTransaction().commit();
             em.close();
 
+            request.getSession().setAttribute("cid", c);
             response.sendRedirect(request.getContextPath() + "/community/show");
 
         }

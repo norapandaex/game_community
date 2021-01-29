@@ -14,6 +14,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import models.Account;
 import models.AccountContribution;
+import models.AccountReply;
 import utils.DBUtil;
 
 /**
@@ -38,21 +39,32 @@ public class AccountSearchServlet extends HttpServlet {
         String skeyword = (String) request.getServletContext().getAttribute("skeyword");
         List<Account> asearches = null;
         List<AccountContribution> acsearches = null;
+        List<AccountReply> arsearches = null;
 
         EntityManager em = DBUtil.createEntityManager();
 
         try{
             asearches = em.createNamedQuery("getAccountSearch", Account.class)
-                    .setParameter("skeyword", "%" + skeyword + "%")
-                    .setParameter("skeyword", "%" + skeyword + "%")
+                    .setParameter("name", "%" + skeyword + "%")
+                    .setParameter("code", skeyword)
+                    .setParameter("profile", "%" + skeyword + "%")
                     .getResultList();
         } catch (NoResultException ex) {}
 
         try{
             acsearches = em.createNamedQuery("getAccountContributionSearch", AccountContribution.class)
-                    .setParameter("skeyword", "%" + skeyword + "%")
-                    .setParameter("skeyword", "%" + skeyword + "%")
-                    .setParameter("skeyword", "%" + skeyword + "%")
+                    .setParameter("content", "%" + skeyword + "%")
+                    .setParameter("name", "%" + skeyword + "%")
+                    .setParameter("code", "%" + skeyword + "%")
+                    .getResultList();
+
+        } catch (NoResultException ex) {}
+
+        try{
+            arsearches = em.createNamedQuery("getAccountReplySearch", AccountReply.class)
+                    .setParameter("content", "%" + skeyword + "%")
+                    .setParameter("name", "%" + skeyword + "%")
+                    .setParameter("code", "%" + skeyword + "%")
                     .getResultList();
 
         } catch (NoResultException ex) {}
@@ -61,6 +73,7 @@ public class AccountSearchServlet extends HttpServlet {
 
         request.setAttribute("asearches", asearches);
         request.setAttribute("acsearches", acsearches);
+        request.setAttribute("arsearches", arsearches);
         RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/views/account/search.jsp");
         rd.forward(request, response);
 
