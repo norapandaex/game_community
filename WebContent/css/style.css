@@ -850,6 +850,11 @@ label {
   visibility: visible;
 }
 
+#popup02:checked ~ .wrapper #popup02Con {
+  opacity: 1;
+  visibility: visible;
+}
+
 .popupText .popupCover {
   margin: 0 -1.5em 1em;
 }

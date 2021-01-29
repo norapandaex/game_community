@@ -56,7 +56,7 @@ public class CommunityShowServlet extends HttpServlet {
                 c = em.find(Community.class, Integer.parseInt(request.getParameter("id")));
                 request.getSession().setAttribute("cid", request.getParameter("id"));
             } else {
-                c = (Community)request.getSession().getAttribute("cid");
+                c = (Community)request.getSession().getAttribute("c");
             }
 
             request.getSession().setAttribute("community", c);

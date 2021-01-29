@@ -40,6 +40,7 @@ public class CommunityContributionDestroyServlet extends HttpServlet {
         em.getTransaction().commit();
         em.close();
 
+        request.getSession().setAttribute("c", cc.getCommunity());
         response.sendRedirect(request.getContextPath() + "/community/show");
     }
 

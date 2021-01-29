@@ -11,9 +11,9 @@
                             <tr>
                                 <th colspan="2">
                                     <div id="btn">
+                                        <c:if test="${login_account != null}">
                                         <input type="hidden" name="_token" value="${_token}" />
                                         <a href="<c:url value='/community/edit?id=${community.id}' />" class="btn2">編集</a>
-                                        <c:if test="${login_account != null}">
                                             <input type="checkbox" id="popup01" class="popupCheck">
                                             <div class="wrapper" align="center">
                                                 <c:choose>

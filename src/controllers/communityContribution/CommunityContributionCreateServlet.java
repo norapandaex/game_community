@@ -90,6 +90,7 @@ public class CommunityContributionCreateServlet extends HttpServlet {
                 em.getTransaction().commit();
                 em.close();
 
+                request.getSession().setAttribute("c", c);
                 response.sendRedirect(request.getContextPath() + "/community/show");
             }
         }

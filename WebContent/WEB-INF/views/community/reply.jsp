@@ -78,7 +78,7 @@
                                         <tr>
                                             <td class="repcon">
                                                 <a class="conname" href="<c:url value='/account/show?id=${contribution.account.id}' />"><c:out value="${contribution.account.name}" />@<c:out value="${contribution.account.code}"></c:out></a>
-                                                <pre><a class="con" href="<c:url value='/acreply/new?id=${contribution.id}' />"><c:out value="${contribution.content}" /><br /></a></pre>
+                                                <pre><a class="con" href="<c:url value='/ccreply/new?id=${contribution.id}' />"><c:out value="${contribution.content}" /><br /></a></pre>
                                                 <c:if test="${contribution.image != null}">
                                                     <div class="trim">
                                                         <a href="<c:url value='/getImage?cid=${contribution.id}' />" data-lightbox="group"><img src="<c:url value='/getImage?cid=${contribution.id}' />" /></a>

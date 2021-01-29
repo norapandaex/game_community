@@ -117,7 +117,26 @@
                                                     <a class="fav" href="<c:url value='/favorite/add?aid=${accountcontribution.id}' />"><i class="far fa-star"></i></a>
                                                 </c:if>
                                                 <c:if test="${login_account.id == accountcontribution.account.id}">
-                                                    <a class="fav" href="<c:url value='/accountcontribution/destroy?aid=${accountcontribution.id}' />"><i class="far fa-trash-alt"></i></a>
+                                                <input type="checkbox" id="popup01" class="popupCheck">
+                                            <div class="wrapper" align="center">
+                                                            <label  class="fav" for="popup01"><i class="far fa-trash-alt"></i></label>
+                                                        <div id="popup01Con" class="popupWrap">
+                                                            <div class="popupBg">
+                                                                <label for="popup01" class="popup_Close"></label>
+                                                            </div>
+                                                            <div class="popupCon">
+                                                                <div class="popupInner">
+                                                                        <div class="popupText">
+                                                                                <p>投稿を削除しますか？</p>
+                                                                                <a href="<c:url value='/accountcontribution/destroy?aid=${accountcontribution.id}' />" id="yes">はい</a>
+                                                                                <label for="popup01" class="popup_Close"><a id="no">いいえ</a></label>
+                                                                        </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+
+
+                                             </div>
                                                 </c:if>
                                                 <a class="time"><c:out value="${accountcontribution.created_at}"></c:out></a>
                                                 </td>
